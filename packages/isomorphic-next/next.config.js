@@ -19,7 +19,7 @@ const nextConfig = {
   env: {
     BACKEND_URL: 'https://localhost:8080',
   },
-  target: 'serverless',
+  target: 'experimental-serverless-trace'
 };
 
 // fix: prevents error when .css files are required by node
@@ -56,3 +56,5 @@ module.exports = withPlugins(
   ],
   nextConfig
 );
+
+console.log({NEXT_CONF: module.exports});
