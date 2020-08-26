@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _Table from \"antd/lib/table\";\nexport default _Table;","map":{"version":3,"sources":["/Users/walaa/Desktop/Isomorphic Main/isomorphic/node_modules/@iso/components/uielements/table.js"],"names":[],"mappings":";AACA","sourcesContent":["import { Table } from 'antd';\nexport default Table;\n"]},"metadata":{},"sourceType":"module"}
