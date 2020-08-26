@@ -1,0 +1,1 @@
+packages/isomorphic-next/next.config.js
