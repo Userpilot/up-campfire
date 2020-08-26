@@ -7,7 +7,7 @@
   "workspaces": [
     "shared/*",
     "packages/*",
-    "packages/isomorphic-boilerplate-graphql/*"
+    "isomorphic"
   ],
   "scripts": {
     "clean": "lerna clean --yes && rimraf node_modules",
