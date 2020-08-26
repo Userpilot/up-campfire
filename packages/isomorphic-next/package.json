@@ -82,7 +82,7 @@
   },
   "scripts": {
     "dev": "next -p 3003",
-    "start": "next -p 3003",
+    "start": "next -p ${PORT:-3003}",
     "build": "next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=1 next build",
