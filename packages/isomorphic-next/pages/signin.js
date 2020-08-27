@@ -17,7 +17,8 @@ export default function SignInPage(props) {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleLogin = e => {
+  const handleLogin = (e) => {
+    console.log('hello there!');
     e.preventDefault();
     dispatch(login(true));
   };
@@ -113,7 +114,7 @@ export default function SignInPage(props) {
 
                 <FirebaseLogin
                   history={router}
-                  login={token => dispatch(login(token))}
+                  login={(token) => dispatch(login(token))}
                 />
               </div>
               <div className="isoCenterComponent isoHelperWrapper">
