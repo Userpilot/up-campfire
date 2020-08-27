@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const isServer = true;","map":{"version":3,"sources":["/Users/walaa/Desktop/Isomorphic Main/isomorphic/node_modules/@iso/lib/helpers/isServer.js"],"names":["isServer"],"mappings":"AAAA,OAAO,MAAMA,QAAQ,OAAd","sourcesContent":["export const isServer = typeof window === 'undefined';\n"]},"metadata":{},"sourceType":"module"}

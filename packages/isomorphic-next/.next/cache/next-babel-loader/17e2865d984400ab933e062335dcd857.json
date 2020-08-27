@@ -1,1 +1,0 @@
-{"ast":null,"code":"import _Button from \"antd/lib/button\";\nexport default _Button;","map":{"version":3,"sources":["/Users/walaa/Desktop/Isomorphic Main/isomorphic/node_modules/@iso/ui/Antd/Button/Button.js"],"names":[],"mappings":";AAEA","sourcesContent":["import { Button } from 'antd';\n\nexport default Button;\n"]},"metadata":{},"sourceType":"module"}
