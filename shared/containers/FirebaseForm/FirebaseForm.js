@@ -71,7 +71,7 @@ export default function (props) {
       const token = await user.getIdToken();
       console.log(user.uid, 'user.uid');
       Userpilot.identify(user.uid, {
-        name: user.displayName,
+        name: user.email,
         email: user.email,
         company: {
           id: 111111111,
