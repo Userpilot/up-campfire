@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactQuill from 'react-quill';
+import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 import 'react-quill/dist/quill.core.css';
 import EditorWrapper from './styles/editor.style';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 class Editor extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ class Editor extends React.Component {
           value={this.state.editorHtml}
           modules={Editor.modules}
           formats={Editor.formats}
-          bounds={'.app'}
+          bounds=".app"
           placeholder={this.props.placeholder}
         />
         {/* <div className="themeSwitcher">

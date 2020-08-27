@@ -17,7 +17,7 @@ import GlideCarousel, { GlideSlide } from '@iso/ui/GlideCarousel/GlideCarousel';
 import Modal from '@iso/ui/Antd/Modal/Modal';
 import PostCard from '@iso/components/PostCard';
 import AvatarCard from '@iso/components/AvatarCard/AvatarCard';
-import Comments from './comments';
+import Comments from './Comments';
 import PostsWrapper, { Button, ContentWrapper } from './Posts.styles';
 
 const galleryOptions = {

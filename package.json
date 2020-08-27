@@ -7,7 +7,7 @@
   "workspaces": [
     "shared/*",
     "packages/*",
-    "packages/isomorphic-boilerplate-graphql/*"
+    "isomorphic"
   ],
   "scripts": {
     "clean": "lerna clean --yes && rimraf node_modules",
@@ -45,6 +45,7 @@
     "prettier": "^2.0.5",
     "redux-devtools-extension": "^2.13.8",
     "rimraf": "^3.0.2",
-    "serve": "^11.3.2"
+    "serve": "^11.3.2",
+    "vercel": "^20.0.0"
   }
 }

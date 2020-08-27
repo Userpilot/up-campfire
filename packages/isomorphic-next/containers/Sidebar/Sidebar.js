@@ -29,8 +29,8 @@ export default function Sidebar(props) {
     openDrawer,
     height,
     current,
-  } = useSelector(state => state.App);
-  const { sidebarTheme } = useSelector(state => state.ThemeSwitcher);
+  } = useSelector((state) => state.App);
+  const { sidebarTheme } = useSelector((state) => state.ThemeSwitcher);
   const dispatch = useDispatch();
   function handleClick(e) {
     dispatch(changeCurrent([e.key]));
@@ -43,10 +43,10 @@ export default function Sidebar(props) {
   }
   function onOpenChange(newOpenKeys) {
     const latestOpenKey = newOpenKeys.find(
-      key => !(openKeys.indexOf(key) > -1)
+      (key) => !(openKeys.indexOf(key) > -1)
     );
     const latestCloseKey = openKeys.find(
-      key => !(newOpenKeys.indexOf(key) > -1)
+      (key) => !(newOpenKeys.indexOf(key) > -1)
     );
     let nextOpenKeys = [];
     if (latestOpenKey) {
@@ -57,7 +57,7 @@ export default function Sidebar(props) {
     }
     dispatch(changeOpenKeys(nextOpenKeys));
   }
-  const getAncestorKeys = key => {
+  const getAncestorKeys = (key) => {
     const map = {
       sub3: ['sub2'],
     };
@@ -81,19 +81,17 @@ export default function Sidebar(props) {
     if (collapsed && openDrawer === false) {
       dispatch(toggleOpenDrawer());
     }
-    return;
   };
   const onMouseLeave = () => {
     if (collapsed && openDrawer === true) {
       dispatch(toggleOpenDrawer());
     }
-    return;
   };
   return (
     <SidebarWrapper>
       <Sider
         trigger={null}
-        collapsible={true}
+        collapsible
         collapsed={isCollapsed}
         width={240}
         className="isomorphicSidebar"
@@ -112,7 +110,7 @@ export default function Sidebar(props) {
             onOpenChange={onOpenChange}
             className="isoDashboardMenu"
           >
-            {SIDEBAR_MENU_OPTIONS.map(option => (
+            {SIDEBAR_MENU_OPTIONS.map((option) => (
               <SidebarMenu
                 key={option.key}
                 item={option}
@@ -120,41 +118,6 @@ export default function Sidebar(props) {
                 submenuStyle={submenuStyle}
               />
             ))}
-
-            <SubMenu
-              key="sub1"
-              title={
-                <span className="isoMenuHolder" style={submenuColor}>
-                  <i className="ion-android-options" />
-                  <span className="nav-text">
-                    <IntlMessages id="sidebar.menuLevels" />
-                  </span>
-                </span>
-              }
-            >
-              <MenuItemGroup
-                key="g1"
-                title={<IntlMessages id="sidebar.item1" />}
-              >
-                <Menu.Item style={submenuStyle} key="1">
-                  <IntlMessages id="sidebar.option1" />
-                </Menu.Item>
-                <Menu.Item style={submenuStyle} key="2">
-                  <IntlMessages id="sidebar.option2" />
-                </Menu.Item>
-              </MenuItemGroup>
-              <MenuItemGroup
-                key="g2"
-                title={<IntlMessages id="sidebar.item2" />}
-              >
-                <Menu.Item style={submenuStyle} key="3">
-                  <IntlMessages id="sidebar.option3" />
-                </Menu.Item>
-                <Menu.Item style={submenuStyle} key="4">
-                  <IntlMessages id="sidebar.option4" />
-                </Menu.Item>
-              </MenuItemGroup>
-            </SubMenu>
           </Menu>
         </Scrollbars>
       </Sider>

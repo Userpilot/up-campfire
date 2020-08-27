@@ -12,32 +12,29 @@ export async function addDocument(collectionName, documentData) {
   return await db
     .collection(collectionName)
     .add(documentData)
-    .then(docRef => docRef.id);
+    .then((docRef) => docRef.id);
 }
 export async function setDocument(collectionName, docRef, documentData) {
-  return await db
-    .collection(collectionName)
-    .doc(docRef)
-    .set(documentData);
+  return await db.collection(collectionName).doc(docRef).set(documentData);
 }
 
 export async function getDocuments(collectionName) {
   return await db
     .collection(collectionName)
     .get()
-    .then(querySnapshot =>
-      querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    .then((querySnapshot) =>
+      querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
     );
 }
 export async function getDocumentsByQuery(collectionName, query) {
   console.log(...query, collectionName, 'test');
-
+  console.log(db, 'db');
   return await db
     .collection(collectionName)
     .where(...query)
     .get()
-    .then(querySnapshot =>
-      querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    .then((querySnapshot) =>
+      querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
     );
 }
 
@@ -46,8 +43,8 @@ export async function deleteDocuments(collectionName) {
   var batch = db.batch();
   await collectionRef
     .get()
-    .then(querySnapshot =>
-      querySnapshot.docs.map(doc => batch.delete(collectionRef.doc(doc.id)))
+    .then((querySnapshot) =>
+      querySnapshot.docs.map((doc) => batch.delete(collectionRef.doc(doc.id)))
     );
 
   return await batch.commit().then(() => {
@@ -61,7 +58,7 @@ export const addCollectionAndDocuments = async (
 ) => {
   const collectionRef = db.collection(collectionKey);
   const batch = db.batch();
-  objectsToAdd.forEach(obj => {
+  objectsToAdd.forEach((obj) => {
     const newDocRef = collectionRef.doc();
     batch.set(newDocRef, obj);
   });
