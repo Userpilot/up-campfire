@@ -19,8 +19,8 @@ const { login } = authAction;
 const { clearMenu } = appAction;
 
 export default function SignIn() {
-  let history = useHistory();
-  let location = useLocation();
+  const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.Auth.idToken);
 
@@ -33,6 +33,7 @@ export default function SignIn() {
 
   function handleLogin(e, token = false) {
     e.preventDefault();
+    console.log(token, 'token');
     if (token) {
       dispatch(login(token));
     } else {
@@ -41,7 +42,7 @@ export default function SignIn() {
     dispatch(clearMenu());
     history.push('/dashboard');
   }
-  let { from } = location.state || { from: { pathname: '/dashboard' } };
+  const { from } = location.state || { from: { pathname: '/dashboard' } };
 
   if (redirectToReferrer) {
     return <Redirect to={from} />;

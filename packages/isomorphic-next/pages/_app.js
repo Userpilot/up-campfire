@@ -6,7 +6,6 @@ import ThemeProvider from '../containers/ThemeProvider';
 import initStore from '../redux/store';
 import 'antd/dist/antd.css';
 import '@glidejs/glide/dist/css/glide.core.min.css';
-
 const CustomApp = ({ Component, pageProps, store }) => {
   useEffect(() => {
     const { Userpilot } = require('userpilot');

@@ -2,7 +2,7 @@ import firebase, { auth } from './firebase';
 
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       unsubscribe();
       resolve(userAuth);
     }, reject);
@@ -17,7 +17,7 @@ export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 export const signInWithFacebook = () =>
   auth
     .signInWithPopup(facebookProvider)
-    .then(function(result) {
+    .then(function (result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
       // The signed-in user info.
@@ -26,7 +26,7 @@ export const signInWithFacebook = () =>
 
       // ...
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // Handle Errors here.
       console.error(error);
 
@@ -34,12 +34,20 @@ export const signInWithFacebook = () =>
     });
 export const signInWithGithub = () => auth.signInWithPopup(githubProvider);
 export const signInWithTwitter = () => auth.signInWithPopup(twitterProvider);
-export const signInWithEmail = async (email, password) =>
-  await auth.signInWithEmailAndPassword(email, password);
+export const signInWithEmail = async (email, password) => {
+  return auth
+    .signInWithEmailAndPassword(email, password)
+    .catch(function (error) {
+      // Handle Errors here.
+      console.log(error, '==');
+      // var errorCode = error.code;
+      // var errorMessage = error.message;
+    });
+};
 export const signUpWithEmailAndPassword = async (email, password) =>
   await auth.createUserWithEmailAndPassword(email, password);
 
-export const resetPassword = email => auth.sendPasswordResetEmail(email);
+export const resetPassword = (email) => auth.sendPasswordResetEmail(email);
 
 export const signOut = () => auth.signOut();
 export default auth;
