@@ -19,7 +19,7 @@ const nextConfig = {
   env: {
     BACKEND_URL: 'https://localhost:8080',
   },
-  target: 'serverless',
+  target: 'server',
 };
 
 // fix: prevents error when .css files are required by node
