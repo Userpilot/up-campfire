@@ -13,6 +13,7 @@
     "clean": "lerna clean --yes && rimraf node_modules",
     "clean:build": "lerna exec -- rimraf \"{.next,dist,out,build,.docz}\"",
     "start:all": "lerna run --parallel start",
+    "heroku-postbuild": "yarn workspace @iso/next run heroku-postbuild",
     "start": "yarn workspace @iso/next run serve",
     "start:iso-cra": "yarn workspace @iso/cra run start",
     "start:iso-next": "yarn workspace @iso/next run dev",
