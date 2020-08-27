@@ -2,5 +2,8 @@
   "name": "@iso/components",
   "version": "1.0.0",
   "main": "index.js",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "react-dates": "^21.8.0"
+  }
 }
