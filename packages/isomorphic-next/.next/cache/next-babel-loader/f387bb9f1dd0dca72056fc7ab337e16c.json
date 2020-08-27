@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _Modal from \"antd/lib/modal\";\nexport default _Modal;","map":{"version":3,"sources":["/Users/walaa/Desktop/Isomorphic Main/isomorphic/node_modules/@iso/ui/Antd/Modal/Modal.js"],"names":[],"mappings":";AAEA","sourcesContent":["import { Modal } from 'antd';\n\nexport default Modal;\n"]},"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _Menu from \"antd/lib/menu\";\nexport default _Menu;","map":{"version":3,"sources":["/Users/walaa/Desktop/Isomorphic Main/isomorphic/node_modules/@iso/components/uielements/menu.js"],"names":[],"mappings":";AAEA","sourcesContent":["import { Menu } from 'antd';\n\nexport default Menu;\n"]},"metadata":{},"sourceType":"module"}

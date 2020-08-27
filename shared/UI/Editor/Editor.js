@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import ReactQuill from 'react-quill';
+
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.core.css';
 import QuillEditor from './Editor.style';
+
+import dynamic from 'next/dynamic';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export default class Editor extends Component {
   constructor(props) {

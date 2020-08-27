@@ -1,0 +1,1 @@
+{"ast":null,"code":"import _Popover from \"antd/lib/popover\";\nexport default _Popover;","map":{"version":3,"sources":["/Users/walaa/Desktop/Isomorphic Main/isomorphic/node_modules/@iso/components/uielements/popover.js"],"names":[],"mappings":";AAEA","sourcesContent":["import { Popover } from 'antd';\n\nexport default Popover;\n"]},"metadata":{},"sourceType":"module"}
