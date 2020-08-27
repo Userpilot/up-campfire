@@ -27,7 +27,7 @@
     "serve:iso-boilerplate": "yarn workspace @iso/next run serve",
 
     "heroku-postbuild": "yarn workspace @iso/next run heroku-postbuild",
-    "start": "yarn workspace @iso/next run start"
+    "start": "yarn workspace @iso/next run serve"
   },
   "husky": {
     "hooks": {
