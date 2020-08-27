@@ -1,1 +1,0 @@
-{"ast":null,"code":"import _Spin from \"antd/lib/spin\";\nexport default _Spin;","map":{"version":3,"sources":["/Users/walaa/Desktop/Isomorphic Main/isomorphic/node_modules/@iso/ui/Antd/Spin/Spin.js"],"names":[],"mappings":";AAEA","sourcesContent":["import { Spin } from 'antd';\n\nexport default Spin;\n"]},"metadata":{},"sourceType":"module"}
