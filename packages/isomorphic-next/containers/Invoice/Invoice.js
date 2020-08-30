@@ -29,35 +29,35 @@ class Invoices extends Component {
       dataIndex: 'number',
       rowKey: 'number',
       width: '15%',
-      render: text => <span>{text}</span>,
+      render: (text) => <span>{text}</span>,
     },
     {
       title: 'Bill From',
       dataIndex: 'billFrom',
       rowKey: 'billFrom',
       width: '25%',
-      render: text => <span>{text}</span>,
+      render: (text) => <span>{text}</span>,
     },
     {
       title: 'Bill TO',
       dataIndex: 'billTo',
       rowKey: 'billTo',
       width: '22%',
-      render: text => <span>{text}</span>,
+      render: (text) => <span>{text}</span>,
     },
     {
       title: 'Total Cost',
       dataIndex: 'totalCost',
       rowKey: 'totalCost',
       width: '15%',
-      render: text => <span>{text}</span>,
+      render: (text) => <span>{text}</span>,
     },
     {
       title: 'Status',
       dataIndex: 'orderStatus',
       rowKey: 'orderStatus',
       width: '13%',
-      render: text => <span>{text}</span>,
+      render: (text) => <span>{text}</span>,
     },
     {
       title: '',
@@ -66,7 +66,7 @@ class Invoices extends Component {
       width: '10%',
       render: (text, invoice) => (
         <div className="isoInvoiceBtnView">
-          <Link href={`invoice?id=${invoice.id}`}>
+          <Link href={`invoice/${invoice.id}`}>
             <a>
               <Button color="primary" className="invoiceViewBtn">
                 View
@@ -95,14 +95,14 @@ class Invoices extends Component {
     const rowSelection = {
       hideDefaultSelections: true,
       selectedRowKeys: selected,
-      onChange: selected => this.setState({ selected }),
+      onChange: (selected) => this.setState({ selected }),
       selections: [
         {
           key: 'all-data',
           text: 'Select All Invoices',
           onSelect: () =>
             this.setState({
-              selected: this.props.invoices.map(invoice => invoice.key),
+              selected: this.props.invoices.map((invoice) => invoice.key),
             }),
         },
         {
@@ -113,7 +113,7 @@ class Invoices extends Component {
         {
           key: 'delete-selected',
           text: 'Delete selected',
-          onSelect: changableRowKeys => {
+          onSelect: (changableRowKeys) => {
             if (selected.length > 0) {
               deleteInvoice(selected);
               this.setState({ selected: [] });
@@ -122,7 +122,7 @@ class Invoices extends Component {
           },
         },
       ],
-      onSelection: selected => this.setState({ selected }),
+      onSelection: (selected) => this.setState({ selected }),
     };
     return (
       <LayoutWrapper>
@@ -169,7 +169,4 @@ function mapStateToProps(state) {
     ...state.Invoices,
   };
 }
-export default connect(
-  mapStateToProps,
-  invoiceActions
-)(Invoices);
+export default connect(mapStateToProps, invoiceActions)(Invoices);
