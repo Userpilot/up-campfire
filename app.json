@@ -4,15 +4,15 @@
   "repository": "https://github.com/userpilot/up-campfire",
   "env": {
     "NEXT_PUBLIC_TOKEN": {
-      "description": "The Userpilot app token to connec with",
+      "description": "The Userpilot app token to connect with",
       "required": true
     },
     "NPM_CONFIG_PRODUCTION": {
-      "description": "The Userpilot app token to connec with",
+      "description": "Development related config, you can leave this be please.",
       "value": "false"
     },
     "YARN_PRODUCTION": {
-      "description": "The Userpilot app token to connec with",
+      "description": "Development related config, you can leave this be please.",
       "value": "false"
     }
   }
