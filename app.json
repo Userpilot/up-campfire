@@ -1,10 +1,9 @@
-
 {
   "name": "Userpilot Campfire",
   "description": "Just a demo platform",
   "repository": "https://github.com/userpilot/up-campfire",
   "env": {
-    "APP_TOKEN": {
+    "TOKEN": {
       "description": "The Userpilot app token to connec with",
       "required": true
     }
