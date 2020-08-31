@@ -15,7 +15,7 @@ const { login } = authActions;
 export default function SignInPage(props) {
   const dispatch = useDispatch();
   const router = useRouter();
-  const handleLogin = e => {
+  const handleLogin = (e) => {
     e.preventDefault();
     dispatch(login(true));
   };
@@ -40,6 +40,10 @@ export default function SignInPage(props) {
           <div className="isoLogoWrapper">
             <Link href="/dashboard">
               <a>
+                <i
+                  className={'ion-fireball'}
+                  style={{ width: '20px', color: '#000' }}
+                />
                 <IntlMessages id="page.signInTitle" />
               </a>
             </Link>
@@ -107,7 +111,7 @@ export default function SignInPage(props) {
 
               <FirebaseLogin
                 history={router}
-                login={token => dispatch(login(token))}
+                login={(token) => dispatch(login(token))}
               />
             </div>
             <div className="isoCenterComponent isoHelperWrapper">

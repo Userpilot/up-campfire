@@ -461,12 +461,12 @@ Save
 Isomorphic
 Remember me
 Sign in
-username  demo   password  demodemo   or Just click on any button.
+username  demo   password  demodemo   or Just click on the next button.
 Sign in with Facebook
 Sign in with Google Plus
 Sign in with Auth0
 Forgot password
-Create an Isomorphoic account
+Create a Campfire account
 Isomorphic
 I agree with terms and condtions
 Sign Up

@@ -47,6 +47,10 @@ export default function SignInPage(props) {
             <div className="isoLogoWrapper">
               <Link href="/dashboard">
                 <a>
+                  <i
+                    className={'ion-fireball'}
+                    style={{ width: '20px', marginRight: '5px' }}
+                  />
                   <IntlMessages id="page.signInTitle" />
                 </a>
               </Link>
@@ -89,29 +93,6 @@ export default function SignInPage(props) {
               </p>
 
               <div className="isoInputWrapper isoOtherLogin">
-                <Button
-                  onClick={handleLogin}
-                  type="primary"
-                  className="btnFacebook"
-                >
-                  <IntlMessages id="page.signInFacebook" />
-                </Button>
-                <Button
-                  onClick={handleLogin}
-                  type="primary"
-                  className="btnGooglePlus"
-                >
-                  <IntlMessages id="page.signInGooglePlus" />
-                </Button>
-
-                <Button
-                  onClick={() => Auth0.login(handleLogin)}
-                  type="primary"
-                  className="btnAuthZero"
-                >
-                  <IntlMessages id="page.signInAuth0" />
-                </Button>
-
                 <FirebaseLogin
                   history={router}
                   login={(token) => dispatch(login(token))}

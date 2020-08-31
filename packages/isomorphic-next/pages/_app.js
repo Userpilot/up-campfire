@@ -6,6 +6,14 @@ import ThemeProvider from '../containers/ThemeProvider';
 import initStore from '../redux/store';
 import 'antd/dist/antd.css';
 import '@glidejs/glide/dist/css/glide.core.min.css';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
+
 const CustomApp = ({ Component, pageProps, store }) => {
   useEffect(() => {
     const { Userpilot } = require('userpilot');
