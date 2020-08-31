@@ -76,31 +76,11 @@ export default function SignUp() {
                 <IntlMessages id="page.signUpButton" />
               </Button>
             </div>
-            <div className="isoInputWrapper isoOtherLogin">
-              <Button
-                onClick={handleLogin}
-                type="primary"
-                className="btnFacebook"
-              >
-                <IntlMessages id="page.signUpFacebook" />
-              </Button>
-              <Button
-                onClick={handleLogin}
-                type="primary"
-                className="btnGooglePlus"
-              >
-                <IntlMessages id="page.signUpGooglePlus" />
-              </Button>
-              <Button
-                onClick={() => {
-                  Auth0.login();
-                }}
-                type="primary"
-                className="btnAuthZero"
-              >
-                <IntlMessages id="page.signUpAuth0" />
-              </Button>
 
+            <p className="isoHelperText">
+              <IntlMessages id="page.signInPreview" />
+            </p>
+            <div className="isoInputWrapper isoOtherLogin">
               <FirebaseSignUpForm
                 signup={true}
                 history={router}
