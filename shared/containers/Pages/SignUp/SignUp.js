@@ -1,22 +1,23 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import Input from '@iso/components/uielements/input';
 import Checkbox from '@iso/components/uielements/checkbox';
 import Button from '@iso/components/uielements/button';
-import FirebaseSignUpForm from '../../FirebaseForm/FirebaseForm';
+import FirebaseSignUpForm from '@iso/containers/FirebaseForm/FirebaseForm';
 import authAction from '@iso/redux/auth/actions';
 import appActions from '@iso/redux/app/actions';
-import Auth0 from '../../Authentication/Auth0/Auth0';
+import Auth0 from '../authentication/Auth0';
 import IntlMessages from '@iso/components/utility/intlMessages';
-import SignUpStyleWrapper from './SignUp.styles';
+import SignUpStyleWrapper from '../styled/SignUp.styles';
 
 const { login } = authAction;
 const { clearMenu } = appActions;
 
 export default function SignUp() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const router = useRouter();
 
   const handleLogin = (token = false) => {
     console.log(token, 'handlelogin');
@@ -33,7 +34,7 @@ export default function SignUp() {
       <div className="isoSignUpContentWrapper">
         <div className="isoSignUpContent">
           <div className="isoLogoWrapper">
-            <Link to="/dashboard">
+            <Link href="/dashboard">
               <IntlMessages id="page.signUpTitle" />
             </Link>
           </div>
@@ -75,41 +76,21 @@ export default function SignUp() {
                 <IntlMessages id="page.signUpButton" />
               </Button>
             </div>
-            <div className="isoInputWrapper isoOtherLogin">
-              <Button
-                onClick={handleLogin}
-                type="primary"
-                className="btnFacebook"
-              >
-                <IntlMessages id="page.signUpFacebook" />
-              </Button>
-              <Button
-                onClick={handleLogin}
-                type="primary"
-                className="btnGooglePlus"
-              >
-                <IntlMessages id="page.signUpGooglePlus" />
-              </Button>
-              <Button
-                onClick={() => {
-                  Auth0.login();
-                }}
-                type="primary"
-                className="btnAuthZero"
-              >
-                <IntlMessages id="page.signUpAuth0" />
-              </Button>
 
+            <p className="isoHelperText">
+              <IntlMessages id="page.signInPreview" />
+            </p>
+            <div className="isoInputWrapper isoOtherLogin">
               <FirebaseSignUpForm
                 signup={true}
-                history={history}
+                history={router}
                 login={() => dispatch(login())}
               />
             </div>
             <div className="isoInputWrapper isoCenterComponent isoHelperWrapper">
-              <Link to="/signin">
+              <a href="/signin">
                 <IntlMessages id="page.signUpAlreadyAccount" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

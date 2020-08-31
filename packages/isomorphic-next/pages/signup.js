@@ -88,9 +88,9 @@ export default function SignUp() {
               />
             </div>
             <div className="isoInputWrapper isoCenterComponent isoHelperWrapper">
-              <Link href="/signin">
+              <a href="/signin">
                 <IntlMessages id="page.signUpAlreadyAccount" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
