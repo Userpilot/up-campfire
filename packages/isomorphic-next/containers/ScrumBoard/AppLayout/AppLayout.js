@@ -7,9 +7,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import modalActions from '@iso/redux/modal/actions';
 import scrumBoardActions from '@iso/redux/scrumBoard/actions';
 import { Title, Filters, Header, HeaderSecondary } from './AppLayout.style';
-// import Router from 'next/router'
-import Router, { useRouter } from 'next/router';
-const router = useRouter();
+
 const { Content } = Layout;
 
 const ALL_TYPES = [
@@ -25,18 +23,17 @@ const CATEGORIES = [
   { label: 'General', value: 'General' },
 ];
 
-const AppLayout = ({ children, setSearchText, history, match }) => (
+const AppLayout = ({ children, setSearchText, router }) => (
   <Layout style={{ backgroundColor: '#fff', minHeight: '100vh' }}>
     <Header>
       <Title>My Projects</Title>
-      {/* <Link href='/dashboard/scrum/[pid]' as={`/dashboard/scrum/${item.id}`}> */}
+
       <Button
         type="primary"
-        onClick={() => router.push('dashboard/scrum/project/new')}
+        onClick={() => router.push('/dashboard/scrum/new')}
       >
         Create Project
       </Button>
-      {/* </Link> */}
     </Header>
 
     <HeaderSecondary>
