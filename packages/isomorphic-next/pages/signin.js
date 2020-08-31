@@ -12,13 +12,14 @@ import Auth0 from '../authentication/Auth0';
 import FirebaseLogin from '@iso/containers/FirebaseForm/FirebaseForm';
 import authActions from '../authentication/actions';
 import SignInStyleWrapper from '../styled/SignIn.styles';
+import CampFireLogo from './CampfireLogo';
+
 const { login } = authActions;
 export default function SignInPage(props) {
   const dispatch = useDispatch();
   const router = useRouter();
 
   const handleLogin = (e) => {
-    console.log('hello there!');
     e.preventDefault();
     dispatch(login(true));
   };
@@ -47,11 +48,7 @@ export default function SignInPage(props) {
             <div className="isoLogoWrapper">
               <Link href="/dashboard">
                 <a>
-                  <i
-                    className={'ion-fireball'}
-                    style={{ width: '20px', marginRight: '5px' }}
-                  />
-                  <IntlMessages id="page.signInTitle" />
+                  <CampFireLogo />
                 </a>
               </Link>
             </div>

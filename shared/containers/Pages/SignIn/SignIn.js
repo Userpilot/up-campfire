@@ -1,78 +1,76 @@
 import React from 'react';
-import Link from 'next/link';
-import Head from 'next/head';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
+import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Input from '@iso/components/uielements/input';
 import Checkbox from '@iso/components/uielements/checkbox';
 import Button from '@iso/components/uielements/button';
 import IntlMessages from '@iso/components/utility/intlMessages';
-import jwtConfig from '@iso/config/jwt.config';
-import Auth0 from '../authentication/Auth0';
-import FirebaseLogin from '@iso/containers/FirebaseForm/FirebaseForm';
-import authActions from '../authentication/actions';
-import SignInStyleWrapper from '../styled/SignIn.styles';
-const { login } = authActions;
-export default function SignInPage(props) {
+import FirebaseLoginForm from '../../FirebaseForm/FirebaseForm';
+import authAction from '@iso/redux/auth/actions';
+import appAction from '@iso/redux/app/actions';
+import Auth0 from '../../Authentication/Auth0/Auth0';
+import {
+  signInWithGoogle,
+  signInWithFacebook,
+} from '@iso/lib/firebase/firebase.authentication.util';
+import SignInStyleWrapper from './SignIn.styles';
+
+const { login } = authAction;
+const { clearMenu } = appAction;
+
+export default function SignIn() {
+  let history = useHistory();
+  let location = useLocation();
   const dispatch = useDispatch();
-  const router = useRouter();
+  const isLoggedIn = useSelector((state) => state.Auth.idToken);
 
-  const handleLogin = (e) => {
-    console.log('hello there!');
+  const [redirectToReferrer, setRedirectToReferrer] = React.useState(false);
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      setRedirectToReferrer(true);
+    }
+  }, [isLoggedIn]);
+
+  function handleLogin(e, token = false) {
     e.preventDefault();
-    dispatch(login(true));
-  };
+    if (token) {
+      dispatch(login(token));
+    } else {
+      dispatch(login());
+    }
+    dispatch(clearMenu());
+    history.push('/dashboard');
+  }
+  let { from } = location.state || { from: { pathname: '/dashboard' } };
 
-  const handleJWTLogin = () => {
-    const { jwtLogin, history } = props;
-    const userInfo = {
-      username:
-        (process.browser && document.getElementById('inputUserName').value) ||
-        '',
-      password:
-        (process.browser && document.getElementById('inpuPassword').value) ||
-        '',
-    };
-    // jwtLogin(history, userInfo);
-  };
-
+  if (redirectToReferrer) {
+    return <Redirect to={from} />;
+  }
   return (
-    <>
-      <Head>
-        <title>SignIn</title>
-      </Head>
-      <SignInStyleWrapper className="isoSignInPage">
-        <div className="isoLoginContentWrapper">
-          <div className="isoLoginContent">
-            <div className="isoLogoWrapper">
-              <Link href="/dashboard">
-                <a>
-                  <i
-                    className={'ion-fireball'}
-                    style={{ width: '20px', marginRight: '5px' }}
-                  />
-                  <IntlMessages id="page.signInTitle" />
-                </a>
-              </Link>
-            </div>
-
-            <div className="isoSignInForm">
+    <SignInStyleWrapper className="isoSignInPage">
+      <div className="isoLoginContentWrapper">
+        <div className="isoLoginContent">
+          <div className="isoLogoWrapper">
+            <Link to="/dashboard">
+              <IntlMessages id="page.signInTitle" />
+            </Link>
+          </div>
+          <div className="isoSignInForm">
+            <form>
               <div className="isoInputWrapper">
                 <Input
-                  id="inputUserName"
                   size="large"
                   placeholder="Username"
-                  defaultValue="demo@gmail.com"
+                  autoComplete="true"
                 />
               </div>
 
               <div className="isoInputWrapper">
                 <Input
-                  id="inpuPassword"
                   size="large"
                   type="password"
                   placeholder="Password"
-                  defaultValue="demodemo"
+                  autoComplete="false"
                 />
               </div>
 
@@ -80,10 +78,7 @@ export default function SignInPage(props) {
                 <Checkbox>
                   <IntlMessages id="page.signInRememberMe" />
                 </Checkbox>
-                <Button
-                  type="primary"
-                  onClick={jwtConfig.enabled ? handleJWTLogin : handleLogin}
-                >
+                <Button type="primary" onClick={handleLogin}>
                   <IntlMessages id="page.signInButton" />
                 </Button>
               </div>
@@ -91,29 +86,24 @@ export default function SignInPage(props) {
               <p className="isoHelperText">
                 <IntlMessages id="page.signInPreview" />
               </p>
-
-              <div className="isoInputWrapper isoOtherLogin">
-                <FirebaseLogin
-                  history={router}
-                  login={(token) => dispatch(login(token))}
-                />
-              </div>
-              <div className="isoCenterComponent isoHelperWrapper">
-                <Link href="/forgotpassword">
-                  <div className="isoForgotPass">
-                    <IntlMessages id="page.signInForgotPass" />
-                  </div>
-                </Link>
-                <Link href="/signup">
-                  <a>
-                    <IntlMessages id="page.signInCreateAccount" />
-                  </a>
-                </Link>
-              </div>
+            </form>
+            <div className="isoInputWrapper isoOtherLogin">
+              <FirebaseLoginForm
+                history={history}
+                login={(token) => dispatch(login(token))}
+              />
+            </div>
+            <div className="isoCenterComponent isoHelperWrapper">
+              <Link to="/forgotpassword" className="isoForgotPass">
+                <IntlMessages id="page.signInForgotPass" />
+              </Link>
+              <Link to="/signup">
+                <IntlMessages id="page.signInCreateAccount" />
+              </Link>
             </div>
           </div>
         </div>
-      </SignInStyleWrapper>
-    </>
+      </div>
+    </SignInStyleWrapper>
   );
 }
