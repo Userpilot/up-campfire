@@ -24,8 +24,8 @@ const SignUpStyleWrapper = styled.div`
     position: absolute;
     z-index: 1;
     top: 0;
-    left: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
-    right: ${props => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
+    left: ${(props) => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
+    right: ${(props) => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
   }
 
   .isoSignUpContentWrapper {
@@ -97,6 +97,33 @@ const SignUpStyleWrapper = styled.div`
         }
       }
 
+      .isoHelperText {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        color: ${palette('grayscale', 1)};
+        padding-left: ${(props) =>
+          props['data-rtl'] === 'rtl' ? 'inherit' : '13px'};
+        padding-right: ${(props) =>
+          props['data-rtl'] === 'rtl' ? '13px' : 'inherit'};
+        margin: 15px 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        &:before {
+          content: '*';
+          color: ${palette('error', 0)};
+          padding-right: 3px;
+          font-size: 14px;
+          line-height: 1;
+          position: absolute;
+          top: 2px;
+          left: ${(props) => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
+          right: ${(props) => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
+        }
+      }
+
       .isoLeftRightComponent {
         display: -webkit-box;
         display: -webkit-flex;
@@ -115,9 +142,9 @@ const SignUpStyleWrapper = styled.div`
           width: calc(100% - 10px);
 
           &:first-child {
-            margin-right: ${props =>
+            margin-right: ${(props) =>
               props['data-rtl'] === 'rtl' ? 'inherit' : '20px'};
-            margin-left: ${props =>
+            margin-left: ${(props) =>
               props['data-rtl'] === 'rtl' ? '20px' : 'inherit'};
           }
         }

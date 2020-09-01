@@ -3,6 +3,7 @@ const modalActions = {
   HIDE_MODAL: 'HIDE_MODAL',
 
   openModal: (payload) => {
+    console.log('hello, payload', modalActions.SHOW_MODAL);
     return {
       type: modalActions.SHOW_MODAL,
       payload,

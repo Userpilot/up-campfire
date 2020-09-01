@@ -33,11 +33,14 @@ const SidebarWrapper = styled.div`
       overflow: hidden;
       ${borderRadius()};
       h3 {
+        display: flex;
+        padding: 22px 35px;
+        justify-content: space-between;
         a,
         i {
           font-size: 21px;
           font-weight: 300;
-          line-height: 70px;
+          line-height: 21px;
           letter-spacing: 3px;
           text-transform: uppercase;
           color: ${palette('grayscale', 6)};
@@ -81,7 +84,7 @@ const SidebarWrapper = styled.div`
         i {
           font-size: 19px;
           color: inherit;
-          margin: ${props =>
+          margin: ${(props) =>
             props['data-rtl'] === 'rtl' ? '0 0 0 30px' : '0 30px 0 0'};
           width: 18px;
           ${transition()};
@@ -145,8 +148,8 @@ const SidebarWrapper = styled.div`
           align-items: center;
         }
         .ant-menu-submenu-arrow {
-          left: ${props => (props['data-rtl'] === 'rtl' ? '25px' : 'auto')};
-          right: ${props => (props['data-rtl'] === 'rtl' ? 'auto' : '25px')};
+          left: ${(props) => (props['data-rtl'] === 'rtl' ? '25px' : 'auto')};
+          right: ${(props) => (props['data-rtl'] === 'rtl' ? 'auto' : '25px')};
           &:before,
           &:after {
             width: 8px;
@@ -180,9 +183,9 @@ const SidebarWrapper = styled.div`
       .ant-menu-inline,
       .ant-menu-submenu-vertical {
         > li:not(.ant-menu-item-group) {
-          padding-left: ${props =>
+          padding-left: ${(props) =>
             props['data-rtl'] === 'rtl' ? '0px !important' : '74px !important'};
-          padding-right: ${props =>
+          padding-right: ${(props) =>
             props['data-rtl'] === 'rtl' ? '74px !important' : '0px !important'};
           font-size: 13px;
           font-weight: 400;

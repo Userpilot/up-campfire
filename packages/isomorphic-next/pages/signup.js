@@ -11,6 +11,7 @@ import appActions from '@iso/redux/app/actions';
 import Auth0 from '../authentication/Auth0';
 import IntlMessages from '@iso/components/utility/intlMessages';
 import SignUpStyleWrapper from '../styled/SignUp.styles';
+import CampFireLogo from './CampfireLogo';
 
 const { login } = authAction;
 const { clearMenu } = appActions;
@@ -20,7 +21,6 @@ export default function SignUp() {
   const router = useRouter();
 
   const handleLogin = (token = false) => {
-    console.log(token, 'handlelogin');
     if (token) {
       dispatch(login(token));
     } else {
@@ -35,7 +35,7 @@ export default function SignUp() {
         <div className="isoSignUpContent">
           <div className="isoLogoWrapper">
             <Link href="/dashboard">
-              <IntlMessages id="page.signUpTitle" />
+              <CampFireLogo />
             </Link>
           </div>
 
@@ -76,31 +76,11 @@ export default function SignUp() {
                 <IntlMessages id="page.signUpButton" />
               </Button>
             </div>
-            <div className="isoInputWrapper isoOtherLogin">
-              <Button
-                onClick={handleLogin}
-                type="primary"
-                className="btnFacebook"
-              >
-                <IntlMessages id="page.signUpFacebook" />
-              </Button>
-              <Button
-                onClick={handleLogin}
-                type="primary"
-                className="btnGooglePlus"
-              >
-                <IntlMessages id="page.signUpGooglePlus" />
-              </Button>
-              <Button
-                onClick={() => {
-                  Auth0.login();
-                }}
-                type="primary"
-                className="btnAuthZero"
-              >
-                <IntlMessages id="page.signUpAuth0" />
-              </Button>
 
+            <p className="isoHelperText">
+              <IntlMessages id="page.signInPreview" />
+            </p>
+            <div className="isoInputWrapper isoOtherLogin">
               <FirebaseSignUpForm
                 signup={true}
                 history={router}
@@ -108,8 +88,10 @@ export default function SignUp() {
               />
             </div>
             <div className="isoInputWrapper isoCenterComponent isoHelperWrapper">
-              <Link href="/signin">
-                <IntlMessages id="page.signUpAlreadyAccount" />
+              <Link href="/signin" as={`/signin`}>
+                <a>
+                  <IntlMessages id="page.signUpAlreadyAccount" />
+                </a>
               </Link>
             </div>
           </div>

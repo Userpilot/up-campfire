@@ -14,13 +14,13 @@ import {
   signInWithFacebook,
 } from '@iso/lib/firebase/firebase.authentication.util';
 import SignInStyleWrapper from './SignIn.styles';
-
+import CampfireLogo from '../CampfireLogo';
 const { login } = authAction;
 const { clearMenu } = appAction;
 
 export default function SignIn() {
-  const history = useHistory();
-  const location = useLocation();
+  let history = useHistory();
+  let location = useLocation();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.Auth.idToken);
 
@@ -33,7 +33,6 @@ export default function SignIn() {
 
   function handleLogin(e, token = false) {
     e.preventDefault();
-    console.log(token, 'token');
     if (token) {
       dispatch(login(token));
     } else {
@@ -42,7 +41,7 @@ export default function SignIn() {
     dispatch(clearMenu());
     history.push('/dashboard');
   }
-  const { from } = location.state || { from: { pathname: '/dashboard' } };
+  let { from } = location.state || { from: { pathname: '/dashboard' } };
 
   if (redirectToReferrer) {
     return <Redirect to={from} />;
@@ -53,7 +52,7 @@ export default function SignIn() {
         <div className="isoLoginContent">
           <div className="isoLogoWrapper">
             <Link to="/dashboard">
-              <IntlMessages id="page.signInTitle" />
+              <CampfireLogo />
             </Link>
           </div>
           <div className="isoSignInForm">
@@ -89,31 +88,6 @@ export default function SignIn() {
               </p>
             </form>
             <div className="isoInputWrapper isoOtherLogin">
-              <Button
-                onClick={signInWithFacebook}
-                type="primary"
-                className="btnFacebook"
-              >
-                <IntlMessages id="page.signInFacebook" />
-              </Button>
-              <Button
-                onClick={signInWithGoogle}
-                type="primary"
-                className="btnGooglePlus"
-              >
-                <IntlMessages id="page.signInGooglePlus" />
-              </Button>
-
-              <Button
-                onClick={() => {
-                  Auth0.login();
-                }}
-                type="primary"
-                className="btnAuthZero"
-              >
-                <IntlMessages id="page.signInAuth0" />
-              </Button>
-
               <FirebaseLoginForm
                 history={history}
                 login={(token) => dispatch(login(token))}

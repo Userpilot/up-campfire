@@ -12,13 +12,15 @@ import Auth0 from '../authentication/Auth0';
 import FirebaseLogin from '@iso/containers/FirebaseForm/FirebaseForm';
 import authActions from '../authentication/actions';
 import SignInStyleWrapper from '../styled/SignIn.styles';
+import CampFireLogo from './CampfireLogo';
+
 const { login } = authActions;
+
 export default function SignInPage(props) {
   const dispatch = useDispatch();
   const router = useRouter();
 
   const handleLogin = (e) => {
-    console.log('hello there!');
     e.preventDefault();
     dispatch(login(true));
   };
@@ -47,7 +49,7 @@ export default function SignInPage(props) {
             <div className="isoLogoWrapper">
               <Link href="/dashboard">
                 <a>
-                  <IntlMessages id="page.signInTitle" />
+                  <CampFireLogo />
                 </a>
               </Link>
             </div>
@@ -89,29 +91,6 @@ export default function SignInPage(props) {
               </p>
 
               <div className="isoInputWrapper isoOtherLogin">
-                <Button
-                  onClick={handleLogin}
-                  type="primary"
-                  className="btnFacebook"
-                >
-                  <IntlMessages id="page.signInFacebook" />
-                </Button>
-                <Button
-                  onClick={handleLogin}
-                  type="primary"
-                  className="btnGooglePlus"
-                >
-                  <IntlMessages id="page.signInGooglePlus" />
-                </Button>
-
-                <Button
-                  onClick={() => Auth0.login(handleLogin)}
-                  type="primary"
-                  className="btnAuthZero"
-                >
-                  <IntlMessages id="page.signInAuth0" />
-                </Button>
-
                 <FirebaseLogin
                   history={router}
                   login={(token) => dispatch(login(token))}

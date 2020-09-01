@@ -6,15 +6,15 @@ export default [
     leftIcon: 'ion-android-mail',
   },
   {
+    key: 'invoice',
+    label: 'sidebar.invoice',
+    leftIcon: 'ion-clipboard',
+  },
+  {
     key: 'scrum',
     path: '/scrum',
     label: 'sidebar.scrumboard',
     leftIcon: 'ion-android-checkbox-outline',
-  },
-  {
-    key: 'invoice',
-    label: 'sidebar.invoice',
-    leftIcon: 'ion-clipboard',
   },
   {
     key: 'calendar',

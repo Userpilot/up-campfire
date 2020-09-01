@@ -24,8 +24,8 @@ const SignInStyleWrapper = styled.div`
     position: absolute;
     z-index: 1;
     top: 0;
-    left: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
-    right: ${props => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
+    left: ${(props) => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
+    right: ${(props) => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
   }
   .isoCenterComponent {
     text-align: center;
@@ -111,9 +111,9 @@ const SignInStyleWrapper = styled.div`
         font-weight: 400;
         line-height: 1.2;
         color: ${palette('grayscale', 1)};
-        padding-left: ${props =>
+        padding-left: ${(props) =>
           props['data-rtl'] === 'rtl' ? 'inherit' : '13px'};
-        padding-right: ${props =>
+        padding-right: ${(props) =>
           props['data-rtl'] === 'rtl' ? '13px' : 'inherit'};
         margin: 15px 0;
         position: relative;
@@ -128,8 +128,8 @@ const SignInStyleWrapper = styled.div`
           line-height: 1;
           position: absolute;
           top: 2px;
-          left: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
-          right: ${props => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
+          left: ${(props) => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
+          right: ${(props) => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
         }
       }
 
@@ -208,6 +208,17 @@ const SignInStyleWrapper = styled.div`
 
       button {
         font-weight: 500;
+      }
+
+      .icon-gradient() {
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .logoIcon {
+        /* color: rgb(253,216,25); */
+        /* color: linear-gradient(0deg, rgba(253,216,25,1) 0%, rgba(232,5,5,1) 100%); */
       }
     }
   }

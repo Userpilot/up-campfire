@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const styledModal = ComponentName =>
+const styledModal = (ComponentName) =>
   styled(ComponentName)`
     color: #0f0;
   `;

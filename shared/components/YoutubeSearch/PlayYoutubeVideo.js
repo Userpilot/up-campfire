@@ -5,7 +5,7 @@ import { YoutubeModal } from './YoutubeSearch.style';
 
 const Modal = YoutubeModal(DefaultModal);
 
-export default function({ selectedVideo, handleCancel }) {
+export default function ({ selectedVideo, handleCancel }) {
   const ops = { playerVars: { autoplay: 1 } };
   return (
     <Modal

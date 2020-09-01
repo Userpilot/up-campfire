@@ -112,12 +112,11 @@ function Board({
           <AddListButton
             onClick={() => {
               console.log('wAaaaa');
-              dispatch(
-                openModal({
-                  modalType: 'CREATE_COLUMN',
-                  modalProps: { boardId: pid },
-                })
-              );
+
+              openModal({
+                modalType: 'CREATE_COLUMN',
+                modalProps: { boardId: pid },
+              });
             }}
           >
             <PlusOutlined /> Add another list
