@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { Layout } from 'antd';
 import appActions from '@iso/redux/app/actions';
 import TopbarNotification from './TopbarNotification';
-import TopbarMessage from './TopbarMessage';
-import TopbarSearch from './TopbarSearch';
 import TopbarUser from './TopbarUser';
-import TopbarAddtoCart from './TopbarAddToCart';
 import TopbarWrapper from './Topbar.styles';
 
 const { Header } = Layout;
@@ -41,28 +38,11 @@ class Topbar extends Component {
           </div>
 
           <ul className="isoRight">
-            <li className="isoSearch">
-              <TopbarSearch locale={locale} />
-            </li>
-
             <li
               onClick={() => this.setState({ selectedItem: 'notification' })}
               className="isoNotify"
             >
               <TopbarNotification locale={locale} />
-            </li>
-
-            <li
-              onClick={() => this.setState({ selectedItem: 'message' })}
-              className="isoMsg"
-            >
-              <TopbarMessage locale={locale} />
-            </li>
-            <li
-              onClick={() => this.setState({ selectedItem: 'addToCart' })}
-              className="isoCart"
-            >
-              <TopbarAddtoCart url={url} locale={locale} />
             </li>
 
             <li
@@ -79,7 +59,7 @@ class Topbar extends Component {
 }
 
 export default connect(
-  state => ({
+  (state) => ({
     ...state.App,
     locale: state.LanguageSwitcher.language.locale,
     customizedTheme: state.ThemeSwitcher.topbarTheme,

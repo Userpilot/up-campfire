@@ -31,11 +31,13 @@ const demoNotifications = [
 ];
 
 export default function TopbarNotification() {
-  const customizedTheme = useSelector(state => state.ThemeSwitcher.topbarTheme);
+  const customizedTheme = useSelector(
+    (state) => state.ThemeSwitcher.topbarTheme
+  );
   const [visible, setVisibility] = React.useState(false);
 
   function handleVisibleChange() {
-    setVisibility(visible => !visible);
+    setVisibility((visible) => !visible);
   }
   const content = (
     <TopbarDropdownWrapper className="topbarNotification">
@@ -43,14 +45,13 @@ export default function TopbarNotification() {
         <h3>Notifications</h3>
       </div>
       <div className="isoDropdownBody">
-        {demoNotifications.map(notification => (
+        {demoNotifications.map((notification) => (
           <a className="isoDropdownListItem" key={notification.id}>
             <h5>{notification.name}</h5>
             <p>{notification.notification}</p>
           </a>
         ))}
       </div>
-      <a className="isoViewAllBtn">View All</a>
     </TopbarDropdownWrapper>
   );
   return (
