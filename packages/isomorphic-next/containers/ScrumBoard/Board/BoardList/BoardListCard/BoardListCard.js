@@ -33,18 +33,20 @@ export default function BoardListCard({ item, onDelete, onEdit }) {
       <tr>
         <td>
           <Link
-            href="/dashboard/scrum/[bid]"
-            as={`/dashboard/scrum/${item.id}`}
+            className="isoDropdownLink"
+            href={`/dashboard/scrum/project/${item.id}`}
           >
-            <ProjectInfo>
-              <Avatar src={AvatarIcon} alt={item.name} />
-              <InfoWrapper>
-                <Title>{item.title}</Title>
-                <CreatedAt>
-                  {moment(item.created_at).format('ddd d, YYYY')}
-                </CreatedAt>
-              </InfoWrapper>
-            </ProjectInfo>
+            <a className="isoDropdownLink">
+              <ProjectInfo>
+                <Avatar src={AvatarIcon} alt={item.name} />
+                <InfoWrapper>
+                  <Title>{item.title}</Title>
+                  <CreatedAt>
+                    {moment(item.created_at).format('ddd d, YYYY')}
+                  </CreatedAt>
+                </InfoWrapper>
+              </ProjectInfo>
+            </a>
           </Link>
         </td>
         <td>
