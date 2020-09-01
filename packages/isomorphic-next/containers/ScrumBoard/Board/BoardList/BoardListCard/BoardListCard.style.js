@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ProjectInfo = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 export const Avatar = styled.img`
   width: 40px;
