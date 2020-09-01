@@ -15,6 +15,7 @@ import SignInStyleWrapper from '../styled/SignIn.styles';
 import CampFireLogo from './CampfireLogo';
 
 const { login } = authActions;
+
 export default function SignInPage(props) {
   const dispatch = useDispatch();
   const router = useRouter();

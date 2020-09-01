@@ -11,6 +11,12 @@ export default [
     leftIcon: 'ion-clipboard',
   },
   {
+    key: 'scrum',
+    path: '/scrum',
+    label: 'sidebar.scrumboard',
+    leftIcon: 'ion-android-checkbox-outline',
+  },
+  {
     key: 'calendar',
     label: 'sidebar.calendar',
     leftIcon: 'ion-calendar',

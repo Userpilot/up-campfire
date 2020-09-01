@@ -11,6 +11,7 @@ import appActions from '@iso/redux/app/actions';
 import Auth0 from '../authentication/Auth0';
 import IntlMessages from '@iso/components/utility/intlMessages';
 import SignUpStyleWrapper from '../styled/SignUp.styles';
+import CampfireLogo from '../CampfireLogo';
 
 const { login } = authAction;
 const { clearMenu } = appActions;
@@ -35,7 +36,7 @@ export default function SignUp() {
         <div className="isoSignUpContent">
           <div className="isoLogoWrapper">
             <Link href="/dashboard">
-              <IntlMessages id="page.signUpTitle" />
+              <CampfireLogo />
             </Link>
           </div>
 

@@ -14,7 +14,7 @@ import {
   signInWithFacebook,
 } from '@iso/lib/firebase/firebase.authentication.util';
 import SignInStyleWrapper from './SignIn.styles';
-
+import CampfireLogo from '../CampfireLogo';
 const { login } = authAction;
 const { clearMenu } = appAction;
 
@@ -52,7 +52,7 @@ export default function SignIn() {
         <div className="isoLoginContent">
           <div className="isoLogoWrapper">
             <Link to="/dashboard">
-              <IntlMessages id="page.signInTitle" />
+              <CampfireLogo />
             </Link>
           </div>
           <div className="isoSignInForm">
