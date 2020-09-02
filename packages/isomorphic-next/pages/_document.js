@@ -1,5 +1,11 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import * as snippet from '@segment/snippet';
+const {
+  // This write key is associated with https://segment.com/nextjs-example/sources/nextjs.
+  ANALYTICS_WRITE_KEY = 'uwDJF5LGCFQdXFD7TxEsGVi9lNzv5n4L',
+  NODE_ENV = 'development',
+} = process.env;
 
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx) {
@@ -9,7 +15,8 @@ export default class CustomDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
         });
 
       const initialProps = await Document.getInitialProps(ctx);
@@ -26,6 +33,22 @@ export default class CustomDocument extends Document {
       sheet.seal();
     }
   }
+
+  renderSnippet() {
+    const opts = {
+      apiKey: ANALYTICS_WRITE_KEY,
+      // note: the page option only covers SSR tracking.
+      // Page.js is used to track other events using `window.analytics.page()`
+      page: false,
+    };
+
+    if (NODE_ENV === 'development') {
+      return snippet.max(opts);
+    }
+
+    return snippet.min(opts);
+  }
+
   render() {
     return (
       <Html>
@@ -54,6 +77,8 @@ export default class CustomDocument extends Document {
             crossOrigin=""
             async
           />
+
+          <script dangerouslySetInnerHTML={{ __html: this.renderSnippet() }} />
         </Head>
         <body>
           <Main />
