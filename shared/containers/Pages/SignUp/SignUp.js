@@ -21,7 +21,6 @@ export default function SignUp() {
   const router = useRouter();
 
   const handleLogin = (token = false) => {
-    console.log(token, 'handlelogin');
     if (token) {
       dispatch(login(token));
     } else {
@@ -83,7 +82,7 @@ export default function SignUp() {
             </p>
             <div className="isoInputWrapper isoOtherLogin">
               <FirebaseSignUpForm
-                signup={true}
+                signup
                 history={router}
                 login={() => dispatch(login())}
               />

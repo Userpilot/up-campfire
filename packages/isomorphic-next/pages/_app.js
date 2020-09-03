@@ -10,27 +10,24 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
-Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeStart', () => {
+  const { Userpilot } = require('userpilot');
+  Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
+  NProgress.start();
+});
+
 Router.events.on('routeChangeComplete', (url) => {
   window.analytics.page(url);
   NProgress.done();
 });
 Router.events.on('routeChangeError', () => NProgress.done());
 
-const CustomApp = ({ Component, pageProps, store }) => {
-  useEffect(() => {
-    const { Userpilot } = require('userpilot');
-    console.log(process.env.NEXT_PUBLIC_TOKEN, 'process.env.NEXT_PUBLIC_TOKEN');
-    Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
-  }, []);
-
-  return (
-    <Provider store={store}>
-      <ThemeProvider>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </Provider>
-  );
-};
+const CustomApp = ({ Component, pageProps, store }) => (
+  <Provider store={store}>
+    <ThemeProvider>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  </Provider>
+);
 
 export default withRedux(initStore)(CustomApp);
