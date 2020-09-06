@@ -18,8 +18,10 @@ Router.events.on('routeChangeStart', () => {
 
 Router.events.on('routeChangeComplete', (url) => {
   window.analytics.page(url);
+  window.userpilot.reload();
   NProgress.done();
 });
+
 Router.events.on('routeChangeError', () => NProgress.done());
 
 const CustomApp = ({ Component, pageProps, store }) => (
