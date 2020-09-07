@@ -8,7 +8,6 @@ import {
   signUpWithEmailAndPassword,
   resetPassword,
 } from '@iso/lib/firebase/firebase.authentication.util';
-import { Userpilot } from 'userpilot';
 
 export default function (props) {
   const [state, setState] = React.useState({
@@ -69,10 +68,8 @@ export default function (props) {
     }
     if (user) {
       const token = await user.getIdToken();
-      if (token && Userpilot) {
-        console.log(Userpilot, 'Userpilot', process.env.NEXT_PUBLIC_TOKEN);
-        Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
-        Userpilot.identify(user.uid, {
+      if (token) {
+        window.userpilot.identify(user.uid, {
           name: user.email,
           email: user.email,
           company: {

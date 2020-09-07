@@ -11,8 +11,11 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
 Router.events.on('routeChangeStart', () => {
-  const { Userpilot } = require('userpilot');
-  Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
+  const isServer = typeof window === 'undefined';
+  if (!isServer) {
+    console.log('yes');
+    window.userpilot.reload();
+  }
   NProgress.start();
 });
 
@@ -24,12 +27,22 @@ Router.events.on('routeChangeComplete', (url) => {
 
 Router.events.on('routeChangeError', () => NProgress.done());
 
-const CustomApp = ({ Component, pageProps, store }) => (
-  <Provider store={store}>
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
-  </Provider>
-);
+const CustomApp = ({ Component, pageProps, store }) => {
+  useEffect(() => {
+    if (!window.userpilot) {
+      const { Userpilot } = require('userpilot');
+      console.log('yes');
+      Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
+    }
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Provider>
+  );
+};
 
 export default withRedux(initStore)(CustomApp);
