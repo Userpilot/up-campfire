@@ -9,6 +9,7 @@ import '@glidejs/glide/dist/css/glide.core.min.css';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import { AuthProvider } from './AuthWrapper';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 
@@ -33,9 +34,11 @@ const CustomApp = ({ Component, pageProps, store }) => {
 
   return (
     <Provider store={store}>
-      <ThemeProvider>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </AuthProvider>
     </Provider>
   );
 };

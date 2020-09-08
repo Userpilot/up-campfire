@@ -68,6 +68,7 @@ export const auth = (ctx) => {
 };
 
 export const logout = () => {
+  window.userpilot.clean();
   cookie.remove('token');
   // to support logging out from all windows
   window.localStorage.setItem('logout', Date.now());
