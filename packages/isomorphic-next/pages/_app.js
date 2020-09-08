@@ -10,10 +10,9 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
-Router.events.on('routeChangeStart', () => {
+Router.events.on('routeChangeStart', (url) => {
   const isServer = typeof window === 'undefined';
-  if (!isServer) {
-    console.log('yes');
+  if (!isServer && url !== '/signin') {
     window.userpilot.reload();
   }
   NProgress.start();
@@ -21,7 +20,6 @@ Router.events.on('routeChangeStart', () => {
 
 Router.events.on('routeChangeComplete', (url) => {
   window.analytics.page(url);
-  window.userpilot.reload();
   NProgress.done();
 });
 

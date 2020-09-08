@@ -22,7 +22,13 @@ export default function TopbarUser() {
           <IntlMessages id="topbar.myprofile" />
         </a>
       </Link>
-      <a className="isoDropdownLink" onClick={() => dispatch(logout())}>
+      <a
+        className="isoDropdownLink"
+        onClick={() => {
+          window.userpilot.clean();
+          dispatch(logout());
+        }}
+      >
         Logout
       </a>
     </TopbarDropdownWrapper>
