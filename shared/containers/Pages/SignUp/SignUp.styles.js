@@ -23,8 +23,8 @@ const SignUpStyleWrapper = styled.div`
     position: absolute;
     z-index: 1;
     top: 0;
-    left: ${props => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
-    right: ${props => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
+    left: ${(props) => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
+    right: ${(props) => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
   }
 
   .isoSignUpContentWrapper {
@@ -36,6 +36,7 @@ const SignUpStyleWrapper = styled.div`
   }
 
   .isoSignUpContent {
+    height: 100vh;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -72,6 +73,7 @@ const SignUpStyleWrapper = styled.div`
 
       .isoInputWrapper {
         margin-bottom: 15px;
+        border-top: 1px dashed #d8d8d8;
 
         &:last-child {
           margin-bottom: 0;
@@ -100,9 +102,9 @@ const SignUpStyleWrapper = styled.div`
           width: calc(100% - 10px);
 
           &:first-child {
-            margin-right: ${props =>
+            margin-right: ${(props) =>
               props['data-rtl'] === 'rtl' ? 'inherit' : '20px'};
-            margin-left: ${props =>
+            margin-left: ${(props) =>
               props['data-rtl'] === 'rtl' ? '20px' : 'inherit'};
           }
         }
@@ -127,7 +129,6 @@ const SignUpStyleWrapper = styled.div`
         font-weight: 500;
         width: 100%;
         height: 42px;
-        border: 0;
 
         &.btnFacebook {
           background-color: ${palette('color', 7)};
@@ -165,11 +166,11 @@ const SignUpStyleWrapper = styled.div`
         }
 
         &.btnAccountKit {
-          ${'' /* background-color: rgb(150, 189, 235); */}
+          ${''}
           margin-top: 15px;
 
           &:hover {
-            ${'' /* background-color: ${palette('color', 6)}; */}
+            ${''}
           }
         }
       }

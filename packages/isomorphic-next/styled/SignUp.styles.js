@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { palette } from 'styled-theme';
-import WithDirection from '@iso/lib/helpers/rtl';
-
 import bgImage from '@iso/assets/images/work.jpg';
+import WithDirection from '@iso/lib/helpers/rtl';
 
 const SignUpStyleWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
-
+  height: 100vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -37,6 +36,7 @@ const SignUpStyleWrapper = styled.div`
   }
 
   .isoSignUpContent {
+    height: 100vh;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -56,8 +56,7 @@ const SignUpStyleWrapper = styled.div`
       justify-content: center;
       flex-shrink: 0;
 
-      a,
-      span {
+      a {
         font-size: 24px;
         font-weight: 300;
         line-height: 1;
@@ -71,6 +70,8 @@ const SignUpStyleWrapper = styled.div`
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
+      border-top: 1px dashed #d8d8d8;
+      padding-top: 20px;
 
       .isoInputWrapper {
         margin-bottom: 15px;
@@ -97,47 +98,7 @@ const SignUpStyleWrapper = styled.div`
         }
       }
 
-      .isoHelperText {
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 1.2;
-        color: ${palette('grayscale', 1)};
-        padding-left: ${(props) =>
-          props['data-rtl'] === 'rtl' ? 'inherit' : '13px'};
-        padding-right: ${(props) =>
-          props['data-rtl'] === 'rtl' ? '13px' : 'inherit'};
-        margin: 15px 0;
-        position: relative;
-        display: flex;
-        align-items: center;
-
-        &:before {
-          content: '*';
-          color: ${palette('error', 0)};
-          padding-right: 3px;
-          font-size: 14px;
-          line-height: 1;
-          position: absolute;
-          top: 2px;
-          left: ${(props) => (props['data-rtl'] === 'rtl' ? 'inherit' : '0')};
-          right: ${(props) => (props['data-rtl'] === 'rtl' ? '0' : 'inherit')};
-        }
-      }
-
       .isoLeftRightComponent {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        width: 100%;
         input {
           width: calc(100% - 10px);
 
@@ -203,6 +164,15 @@ const SignUpStyleWrapper = styled.div`
 
           &:hover {
             background-color: ${palette('color', 6)};
+          }
+        }
+
+        &.btnAccountKit {
+          ${''}
+          margin-top: 15px;
+
+          &:hover {
+            ${''}
           }
         }
       }

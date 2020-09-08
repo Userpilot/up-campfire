@@ -40,55 +40,15 @@ export default function SignUp() {
           </div>
 
           <div className="isoSignUpForm">
-            <div className="isoInputWrapper isoLeftRightComponent">
-              <Input size="large" placeholder="First name" />
-              <Input size="large" placeholder="Last name" />
-            </div>
-
-            <div className="isoInputWrapper">
-              <Input size="large" placeholder="Username" />
-            </div>
-
-            <div className="isoInputWrapper">
-              <Input size="large" placeholder="Email" />
-            </div>
-
-            <div className="isoInputWrapper">
-              <Input size="large" type="password" placeholder="Password" />
-            </div>
-
-            <div className="isoInputWrapper">
-              <Input
-                size="large"
-                type="password"
-                placeholder="Confirm Password"
-              />
-            </div>
-
-            <div className="isoInputWrapper" style={{ marginBottom: '50px' }}>
-              <Checkbox>
-                <IntlMessages id="page.signUpTermsConditions" />
-              </Checkbox>
-            </div>
-
-            <div className="isoInputWrapper">
-              <Button type="primary">
-                <IntlMessages id="page.signUpButton" />
-              </Button>
-            </div>
-
-            <p className="isoHelperText">
-              <IntlMessages id="page.signInPreview" />
-            </p>
             <div className="isoInputWrapper isoOtherLogin">
               <FirebaseSignUpForm
-                signup={true}
+                signup
                 history={router}
                 login={() => dispatch(login())}
               />
             </div>
             <div className="isoInputWrapper isoCenterComponent isoHelperWrapper">
-              <Link href="/signin" as={`/signin`}>
+              <Link href="/signin" as="/signin">
                 <a>
                   <IntlMessages id="page.signUpAlreadyAccount" />
                 </a>
