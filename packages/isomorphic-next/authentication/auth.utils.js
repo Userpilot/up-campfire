@@ -11,7 +11,7 @@ export const setCookie = (key, value) => {
   }
 };
 
-export const removeCookie = key => {
+export const removeCookie = (key) => {
   if (process.browser) {
     cookie.remove(key, {
       expires: 1,
@@ -25,7 +25,7 @@ export const getCookie = (key, req) => {
     : getCookieFromServer(key, req);
 };
 
-const getCookieFromBrowser = key => {
+const getCookieFromBrowser = (key) => {
   return cookie.get(key);
 };
 
@@ -35,7 +35,7 @@ const getCookieFromServer = (key, req) => {
   }
   const rawCookie = req.headers.cookie
     .split(';')
-    .find(c => c.trim().startsWith(`${key}=`));
+    .find((c) => c.trim().startsWith(`${key}=`));
   if (!rawCookie) {
     return undefined;
   }
@@ -44,10 +44,10 @@ const getCookieFromServer = (key, req) => {
 
 export const login = ({ token }) => {
   cookie.set('token', token, { expires: 1 });
-  Router.push('/dashboard');
+  Router.push('/dashboard?referal=login');
 };
 
-export const auth = ctx => {
+export const auth = (ctx) => {
   const { token } = nextCookie(ctx);
 
   /*
@@ -74,9 +74,9 @@ export const logout = () => {
   Router.push('/signin');
 };
 
-export const withAuthSync = WrappedComponent => {
-  const Wrapper = props => {
-    const syncLogout = event => {
+export const withAuthSync = (WrappedComponent) => {
+  const Wrapper = (props) => {
+    const syncLogout = (event) => {
       if (event.key === 'logout') {
         console.log('logged out from storage!');
         Router.push('/signin');
@@ -95,7 +95,7 @@ export const withAuthSync = WrappedComponent => {
     return <WrappedComponent {...props} />;
   };
 
-  Wrapper.getInitialProps = async ctx => {
+  Wrapper.getInitialProps = async (ctx) => {
     const token = auth(ctx);
 
     const componentProps =

@@ -9,7 +9,6 @@ const initState = {
 export default function authReducer(state = initState, action) {
   switch (action.type) {
     case actions.LOGIN_REQUEST_SUCCESS:
-      // Router.replace('/dashboard');
       return { ...state, idToken: action.payload };
     case actions.LOGOUT_REQUEST_FAILURE:
     case actions.LOGIN_REQUEST_FAILURE:

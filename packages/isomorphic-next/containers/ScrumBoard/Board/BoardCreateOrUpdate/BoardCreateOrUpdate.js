@@ -64,7 +64,7 @@ const CreateOrUpdateBoard = (props) => {
           border="none"
           padding="0"
           alt="Close Icon"
-          onClick={() => props.router.push('/dashboard/scrum-board')}
+          onClick={() => props.router.push('/dashboard/scrum')}
         />
       </TopBar>
       <FormWrapper>

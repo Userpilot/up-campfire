@@ -68,18 +68,8 @@ export default function (props) {
     }
     if (user) {
       const token = await user.getIdToken();
-      if (token) {
-        window.userpilot.identify(user.uid, {
-          name: user.email,
-          email: user.email,
-          company: {
-            id: 111111111,
-          },
-          plan: 'free',
-        });
-      }
       props.login(token);
-      props.history.push('/dashboard');
+      props.history.push('/dashboard?referal=login');
     } else {
       notification('error', message);
       setState({
