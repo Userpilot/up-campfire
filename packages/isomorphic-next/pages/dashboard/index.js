@@ -11,14 +11,16 @@ export default withAuthSync(() => {
 
   if (router.query && router.query.referal === 'login') {
     getCurrentUser().then((user) => {
-      window.userpilot.identify(user.uid, {
-        name: user.email,
-        email: user.email,
-        company: {
-          id: 111111111,
-        },
-        plan: 'free',
-      });
+      if (window && window.userpilot) {
+        window.userpilot.identify(user.uid, {
+          name: user.email,
+          email: user.email,
+          company: {
+            id: 111111111,
+          },
+          plan: 'free',
+        });
+      }
     });
   }
 

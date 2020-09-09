@@ -9,7 +9,7 @@ import '@glidejs/glide/dist/css/glide.core.min.css';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { AuthProvider } from './AuthWrapper';
+import { AuthProvider } from '../containers/AuthWrapper';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 
