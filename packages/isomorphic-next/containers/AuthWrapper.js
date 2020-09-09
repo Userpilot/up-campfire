@@ -23,7 +23,10 @@ function AuthProvider({ children }) {
     };
 
     // Check that initial route is OK
-    if ((pathname === '/' || pathname === '/signin') && user) {
+    if (
+      (pathname === '/' || pathname === '/signin') &&
+      window.localStorage.getItem('userpilotUser')
+    ) {
       // window.location.href = '/dashboard'
       router.push('/dashboard');
     }

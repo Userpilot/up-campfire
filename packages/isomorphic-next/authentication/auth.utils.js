@@ -72,7 +72,7 @@ export const logout = () => {
   cookie.remove('token');
   // to support logging out from all windows
   window.localStorage.setItem('logout', Date.now());
-  Router.push('/signin');
+  window.location.replace('/signin');
 };
 
 export const withAuthSync = (WrappedComponent) => {
