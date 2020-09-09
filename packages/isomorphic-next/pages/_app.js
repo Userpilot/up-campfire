@@ -15,8 +15,8 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 
 Router.events.on('routeChangeComplete', (url) => {
   window.analytics.page(url);
-  const isServer = typeof window === 'undefined';
-  if (!isServer && url !== '/signin') {
+  const isBrowser = typeof window !== 'undefined';
+  if (isBrowser && url !== '/signin') {
     window.userpilot.reload();
   }
   NProgress.done();

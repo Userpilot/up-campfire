@@ -13,6 +13,8 @@ import invoiceActions from '@iso/redux/invoice/actions';
 import CardWrapper from './Invoice.styles';
 import TableWrapper from '@iso/containers/Tables/AntTables/AntTables.styles';
 
+const RandomNumber = () => Math.floor(Math.random() * 100);
+
 class Invoices extends Component {
   state = {
     selected: [],
@@ -50,7 +52,9 @@ class Invoices extends Component {
       dataIndex: 'totalCost',
       rowKey: 'totalCost',
       width: '15%',
-      render: (text) => <span>{text}</span>,
+      render: (text) => (
+        <span className={`totla-cost-${RandomNumber()}`}>{text}</span>
+      ),
     },
     {
       title: 'Status',
