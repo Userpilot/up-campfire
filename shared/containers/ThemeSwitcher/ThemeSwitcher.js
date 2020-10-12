@@ -12,7 +12,7 @@ const { switchActivation, changeTheme } = Actions;
 
 export default function ThemeSwitcher() {
   const { isActivated, topbarTheme, sidebarTheme, layoutTheme } = useSelector(
-    state => state.ThemeSwitcher
+    (state) => state.ThemeSwitcher
   );
   const dispatch = useDispatch();
   const styleButton = { background: sidebarTheme.buttonColor };
@@ -59,17 +59,6 @@ export default function ThemeSwitcher() {
           <IntlMessages id="themeSwitcher.purchase" />
         </a>
       </div>
-
-      <button
-        type="primary"
-        className="switcherToggleBtn"
-        style={styleButton}
-        onClick={() => {
-          dispatch(switchActivation());
-        }}
-      >
-        <img src={bucketSVG} alt="bucket" />
-      </button>
     </ThemeSwitcherStyle>
   );
 }
