@@ -27,7 +27,7 @@ export default function ({ collapsed }) {
       ) : (
         <h3>
           <Link href="/dashboard">
-            <a href="/dashboard">
+            <a href="/dashboard" style={{ display: 'inline-block' }}>
               <Fireball />
               {siteConfig.siteName}
             </a>
