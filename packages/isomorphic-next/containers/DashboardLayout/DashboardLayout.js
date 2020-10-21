@@ -1,12 +1,10 @@
 import React from 'react';
 import { Layout } from 'antd';
-
 import Sidebar from '../Sidebar/Sidebar';
-import ThemeSwitcher from '@iso/containers/ThemeSwitcher/ThemeSwitcher';
 import Topbar from '../Topbar/Topbar';
 import siteConfig from '@iso/config/site.config';
 import AppHolder from './DashboardLayout.styles';
-
+import Drift from 'react-driftjs';
 const { Content, Footer } = Layout;
 
 export default function DashboardLayout({ children }) {
@@ -14,7 +12,6 @@ export default function DashboardLayout({ children }) {
     <AppHolder>
       <Layout style={{ height: '100vh' }}>
         <Topbar />
-
         <Layout style={{ flexDirection: 'row', overflowX: 'hidden' }}>
           <Sidebar />
           <Layout
@@ -45,7 +42,7 @@ export default function DashboardLayout({ children }) {
             </Footer>
           </Layout>
         </Layout>
-        <ThemeSwitcher />
+        <Drift appId="kniyd8nra9kb" />;
       </Layout>
     </AppHolder>
   );

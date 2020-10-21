@@ -27,10 +27,10 @@ export default function ({ collapsed }) {
       ) : (
         <h3>
           <Link href="/dashboard">
-            <>
+            <a href="/dashboard">
               <Fireball />
-              <a>{siteConfig.siteName}</a>
-            </>
+              {siteConfig.siteName}
+            </a>
           </Link>
         </h3>
       )}

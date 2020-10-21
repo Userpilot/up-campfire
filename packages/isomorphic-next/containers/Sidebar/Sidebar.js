@@ -11,6 +11,7 @@ import Logo from '@iso/components/utility/Logo.next';
 import SidebarWrapper from './Sidebar.styles';
 import SidebarMenu from './SidebarMenu';
 import SIDEBAR_MENU_OPTIONS from './sidebar.navigations';
+import Link from 'next/link';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -99,7 +100,9 @@ export default function Sidebar(props) {
         onMouseLeave={onMouseLeave}
         style={styling}
       >
-        <Logo collapsed={isCollapsed} />
+        <Link href="/dashboard">
+          <Logo collapsed={isCollapsed} />
+        </Link>
         <Scrollbars style={{ height: scrollheight - 70 }}>
           <Menu
             onClick={handleClick}
