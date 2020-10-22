@@ -80,7 +80,7 @@ export default function Sidebar(props) {
   };
   const onMouseEnter = () => {
     if (collapsed && openDrawer === false) {
-      dispatch(toggleOpenDrawer());
+      // dispatch(toggleOpenDrawer());
     }
   };
   const onMouseLeave = () => {

@@ -21,7 +21,11 @@ export default function ({ collapsed }) {
       {collapsed ? (
         <div>
           <h3>
-            <Fireball />
+            <Link href="/dashboard">
+              <a href="/dashboard" style={{ display: 'flex' }}>
+                <Fireball />
+              </a>
+            </Link>
           </h3>
         </div>
       ) : (

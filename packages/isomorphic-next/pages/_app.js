@@ -30,6 +30,8 @@ const CustomApp = ({ Component, pageProps, store }) => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
       Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
+      if (process.env.NEXT_IS_STAGING)
+        window.userpilotSettings.version = 'staging';
       console.log(window.drift);
     }
   }, []);
