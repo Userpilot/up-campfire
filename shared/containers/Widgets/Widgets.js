@@ -21,10 +21,6 @@ import {
   tableinfos,
   dataList,
 } from '../Tables/AntTables/AntTables';
-import * as rechartConfigs from '../Charts/Recharts/config';
-import StackedAreaChart from '../Charts/Recharts/Charts/StackedAreaChart';
-import GoogleChart from 'react-google-charts';
-import * as googleChartConfigs from '../Charts/GoogleChart/config';
 import IntlMessages from '@iso/components/utility/intlMessages';
 
 const tableDataList = clone(dataList);
@@ -204,7 +200,7 @@ const SOCIAL_PROFILE = [
     iconcolor: '#ea4c89',
   },
 ];
-export default function() {
+export default function () {
   const { rowStyle, colStyle } = basicStyle;
 
   const chartEvents = [
@@ -214,10 +210,6 @@ export default function() {
     },
   ];
 
-  const stackConfig = {
-    ...rechartConfigs.StackedAreaChart,
-    width: !isServer && window.innerWidth < 450 ? 300 : 500,
-  };
   return (
     <LayoutWrapper>
       <div style={styles.wisgetPageStyle}>
@@ -323,37 +315,6 @@ export default function() {
 
           <Col lg={12} md={24} sm={24} xs={24} style={colStyle}>
             <IsoWidgetsWrapper>
-              <IsoWidgetBox height={448} style={{ overflow: 'hidden' }}>
-                <StackedAreaChart {...stackConfig} />
-              </IsoWidgetBox>
-            </IsoWidgetsWrapper>
-          </Col>
-        </Row>
-
-        <Row style={rowStyle} gutter={0} justify="start">
-          <Col md={12} sm={24} xs={24} style={colStyle}>
-            <IsoWidgetsWrapper>
-              <IsoWidgetBox height={470} style={{ overflow: 'hidden' }}>
-                <GoogleChart
-                  {...googleChartConfigs.BarChart}
-                  chartEvents={chartEvents}
-                />
-              </IsoWidgetBox>
-            </IsoWidgetsWrapper>
-          </Col>
-
-          <Col md={12} sm={24} xs={24} style={colStyle}>
-            <IsoWidgetsWrapper>
-              <IsoWidgetBox height={470} style={{ overflow: 'hidden' }}>
-                <GoogleChart {...googleChartConfigs.Histogram} />
-              </IsoWidgetBox>
-            </IsoWidgetsWrapper>
-          </Col>
-        </Row>
-
-        <Row style={rowStyle} gutter={0} justify="start">
-          <Col lg={8} md={12} sm={12} xs={24} style={colStyle}>
-            <IsoWidgetsWrapper>
               {/* VCard Widget */}
               <VCardWidget
                 style={{ height: '450px' }}
@@ -376,24 +337,6 @@ export default function() {
                   ))}
                 </SocialWidget>
               </VCardWidget>
-            </IsoWidgetsWrapper>
-          </Col>
-
-          <Col lg={8} md={12} sm={12} xs={24} style={colStyle}>
-            <IsoWidgetsWrapper>
-              {/* Chart */}
-              <IsoWidgetBox height={450} style={{ overflow: 'hidden' }}>
-                <GoogleChart {...googleChartConfigs.TrendLines} />
-              </IsoWidgetBox>
-            </IsoWidgetsWrapper>
-          </Col>
-
-          <Col lg={8} md={24} sm={24} xs={24} style={colStyle}>
-            <IsoWidgetsWrapper>
-              <IsoWidgetBox height={450} style={{ overflow: 'hidden' }}>
-                {/* Google Bar Chart */}
-                <GoogleChart {...googleChartConfigs.ComboChart} />
-              </IsoWidgetBox>
             </IsoWidgetsWrapper>
           </Col>
         </Row>
