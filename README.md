@@ -13,8 +13,7 @@ You will see the following settings:
 - Fill in the app name field (the product will be https://[app-name].herokuapp.com).
 - You need to add `NEXT_PUBLIC_TOKEN` (which is your token from Userpilot product).
 
-![Image of Yaktocat](https://i.ibb.co/Jjj5YTS/Screen-Shot-2020-09-01-at-1-11-46-PM.png=550x450)
-
+![Image of Yaktocat](https://ibb.co/8rmshsF=550x450)
 
 ## Development
 
