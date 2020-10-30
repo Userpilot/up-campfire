@@ -77,7 +77,6 @@ export default class CustomDocument extends Document {
             crossOrigin=""
             async
           />
-
           <script dangerouslySetInnerHTML={{ __html: this.renderSnippet() }} />
         </Head>
         <body>
