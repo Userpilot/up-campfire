@@ -37,7 +37,6 @@ const CustomApp = ({ Component, pageProps, store }) => {
       ) {
         window.userpilotSettings.version = 'staging';
       }
-      console.log(window.drift);
     }
     if (installPendo && window !== undefined) {
       <script>
