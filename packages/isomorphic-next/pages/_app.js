@@ -30,10 +30,13 @@ const CustomApp = ({ Component, pageProps, store }) => {
   useEffect(() => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
-      if (!process.env.NEXT_PUBLIC_SDK_PRODUCTION) {
+      Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
+      if (
+        (process.env.NEXT_PUBLIC_SDK_PRODUCTION || 'true').toLowerCase() ===
+        'false'
+      ) {
         window.userpilotSettings.version = 'staging';
       }
-      Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
     }
     if (installPendo && window !== undefined) {
       <script>
