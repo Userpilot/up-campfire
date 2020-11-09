@@ -55,7 +55,7 @@
 		"enzyme-adapter-react-16": "^1.15.2",
 		"enzyme-react-intl": "^2.0.6",
 		"express": "^4.17.1",
-		"firebase": "^7.15.1",
+		"firebase": "^8.0.1",
 		"formik": "^2.1.4",
 		"frappe-charts": "^1.5.0",
 		"fuse.js": "^6.0.4",
