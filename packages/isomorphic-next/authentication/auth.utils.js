@@ -44,7 +44,7 @@ const getCookieFromServer = (key, req) => {
 
 export const login = ({ token }) => {
   cookie.set('token', token, { expires: 1 });
-  Router.push('/dashboard?referal=login');
+  Router.push('/dashboard');
 };
 
 export const auth = (ctx) => {
