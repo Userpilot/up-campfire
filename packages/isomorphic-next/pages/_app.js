@@ -17,8 +17,23 @@ import cookie from 'js-cookie';
 Router.events.on('routeChangeStart', (url) => {
   NProgress.start();
   const isBrowser = typeof window !== 'undefined';
-  if (isBrowser && url !== '/signin') {
+  if (isBrowser && url !== '/signin' && cookie.get('token')) {
     window.userpilot.reload();
+
+    getCurrentUser().then((user) => {
+      if (window && window.userpilot && user) {
+        console.log(user.uid, 'user');
+        window.userpilot.identify(user.uid, {
+          name: user.email + '123',
+          email: user.email,
+          company: {
+            id: 111111111,
+          },
+          plan: 'free',
+        });
+        window.userpilot.reload();
+      }
+    });
   }
 });
 
@@ -39,23 +54,10 @@ const CustomApp = ({ Component, pageProps, store }) => {
   useEffect(() => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
-      Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
+      Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN || '3fg24g1');
+      console.log(cookie.get('token'), 'cookie.get()');
       if (cookie.get('token') === undefined) {
         Router.push('/signin');
-      } else {
-        getCurrentUser().then((user) => {
-          if (window && window.userpilot && user) {
-            window.userpilot.identify(user.uid, {
-              name: user.email,
-              email: user.email,
-              company: {
-                id: 111111111,
-              },
-              plan: 'free',
-            });
-            window.userpilot.reload();
-          }
-        });
       }
       if (
         (process.env.NEXT_PUBLIC_SDK_PRODUCTION || 'true').toLowerCase() ===
