@@ -14,7 +14,13 @@ import Drift from 'react-driftjs';
 import { getCurrentUser } from '@iso/lib/firebase/firebase.authentication.util';
 import cookie from 'js-cookie';
 
-Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeStart', (url) => {
+  NProgress.start();
+  const isBrowser = typeof window !== 'undefined';
+  if (isBrowser && url !== '/signin') {
+    window.userpilot.reload();
+  }
+});
 
 Router.events.on('routeChangeComplete', (url) => {
   window.analytics.page(url);
@@ -34,7 +40,6 @@ const CustomApp = ({ Component, pageProps, store }) => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
       Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
-      console.log(cookie.get('token'), '====');
       if (cookie.get('token') === undefined) {
         Router.push('/signin');
       } else {
@@ -48,7 +53,7 @@ const CustomApp = ({ Component, pageProps, store }) => {
               },
               plan: 'free',
             });
-          } else {
+            window.userpilot.reload();
           }
         });
       }
