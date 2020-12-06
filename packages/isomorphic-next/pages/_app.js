@@ -11,6 +11,8 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { AuthProvider } from '../containers/AuthWrapper';
 import Drift from 'react-driftjs';
+import { getCurrentUser } from '@iso/lib/firebase/firebase.authentication.util';
+import cookie from 'js-cookie';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 
@@ -27,10 +29,29 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const CustomApp = ({ Component, pageProps, store }) => {
   const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
+
   useEffect(() => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
       Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN);
+      console.log(cookie.get('token'), '====');
+      if (cookie.get('token') === undefined) {
+        Router.push('/signin');
+      } else {
+        getCurrentUser().then((user) => {
+          if (window && window.userpilot && user) {
+            window.userpilot.identify(user.uid, {
+              name: user.email,
+              email: user.email,
+              company: {
+                id: 111111111,
+              },
+              plan: 'free',
+            });
+          } else {
+          }
+        });
+      }
       if (
         (process.env.NEXT_PUBLIC_SDK_PRODUCTION || 'true').toLowerCase() ===
         'false'
