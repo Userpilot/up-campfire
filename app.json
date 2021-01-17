@@ -19,6 +19,10 @@
       "description": "Where to use Userpilot SDK production or staging",
       "value": "true"
     },
+    "NEXT_PUBLIC_API_ENDPOINT": {
+      "description": "The API to connect the SDK to.",
+      "value": "api.userpilot.io/socket/"
+    },
     "NEXT_PUBLIC_INSTALL_PENDO": {
       "description": "To use Pendo SDK for testing",
       "value": "false"
