@@ -28,21 +28,31 @@ Router.events.on('routeChangeComplete', (url) => {
 
 Router.events.on('routeChangeError', () => NProgress.done());
 
+const getSettings = () => {
+  const useStagingSdk =
+    (process.env.NEXT_PUBLIC_SDK_PRODUCTION || 'true').toLowerCase() ===
+    'false';
+
+  const version = useStagingSdk ? 'staging' : 'v0';
+  const endpoint =
+    process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/';
+
+  return { version, endpoint };
+};
+
 const CustomApp = ({ Component, pageProps, store }) => {
   const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
 
   useEffect(() => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
-      Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN || '3fg24g1');
+      Userpilot.initialize(
+        process.env.NEXT_PUBLIC_TOKEN || '3fg24g1',
+        getSettings()
+      );
+      console.log(cookie.get('token'), 'cookie.get()');
       if (cookie.get('token') === undefined) {
         Router.push('/signin');
-      }
-      if (
-        (process.env.NEXT_PUBLIC_SDK_PRODUCTION || 'true').toLowerCase() ===
-        'false'
-      ) {
-        window.userpilotSettings.version = 'staging';
       }
     }
     if (installPendo && window !== undefined) {
