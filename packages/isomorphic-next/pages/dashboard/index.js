@@ -7,19 +7,11 @@ import DashboardLayout from '../../containers/DashboardLayout/DashboardLayout';
 import { getCurrentUser } from '@iso/lib/firebase/firebase.authentication.util';
 
 const Widgets = loadable(() => import('@iso/containers/Widgets/Widgets'));
-
 export default withAuthSync(() => {
   getCurrentUser().then((user) => {
-    if (window && window.userpilot && user) {
-      console.log(user.uid, 'user.uiddashbaord');
-      window.userpilot.identify(user.uid, {
-        name: user.email,
-        email: user.email,
-        company: {
-          id: 111111111,
-        },
-        plan: 'free',
-      });
+    // - look at this please!
+    if (window && window.userpilot && user && user.uid) {
+      console.log(user, 'user');
       window.userpilot.reload();
     } else {
       Router.push('/login');

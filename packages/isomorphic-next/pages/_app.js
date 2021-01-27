@@ -11,30 +11,10 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { AuthProvider } from '../containers/AuthWrapper';
 import Drift from 'react-driftjs';
-import { getCurrentUser } from '@iso/lib/firebase/firebase.authentication.util';
 import cookie from 'js-cookie';
 
 Router.events.on('routeChangeStart', (url) => {
   NProgress.start();
-  const isBrowser = typeof window !== 'undefined';
-  if (isBrowser && url !== '/signin' && cookie.get('token')) {
-    window.userpilot.reload();
-
-    getCurrentUser().then((user) => {
-      if (window && window.userpilot && user) {
-        console.log(user.uid, 'user');
-        window.userpilot.identify(user.uid, {
-          name: user.email + '123',
-          email: user.email,
-          company: {
-            id: 111111111,
-          },
-          plan: 'free',
-        });
-        window.userpilot.reload();
-      }
-    });
-  }
 });
 
 Router.events.on('routeChangeComplete', (url) => {
@@ -55,7 +35,6 @@ const CustomApp = ({ Component, pageProps, store }) => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
       Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN || '3fg24g1');
-      console.log(cookie.get('token'), 'cookie.get()');
       if (cookie.get('token') === undefined) {
         Router.push('/signin');
       }
