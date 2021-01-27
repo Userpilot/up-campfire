@@ -111,8 +111,6 @@ function Board({
             })}
           <AddListButton
             onClick={() => {
-              console.log('wAaaaa');
-
               openModal({
                 modalType: 'CREATE_COLUMN',
                 modalProps: { boardId: pid },

@@ -37,6 +37,7 @@ export default function (props) {
   };
   const handleLogin = async () => {
     const { email, password } = state;
+    console.log('it should be here', email);
     if (!(email && password)) {
       notification('error', 'Please fill in email. and password');
       return;
@@ -60,6 +61,17 @@ export default function (props) {
       try {
         await signInWithEmail(email, password).then((authUser) => {
           user = authUser.user;
+          if (window && user) {
+            window.userpilot.identify(user.uid, {
+              name: user.email,
+              email: user.email,
+              company: {
+                id: 111111111,
+              },
+              plan: 'free',
+            });
+            window.userpilot.reload();
+          }
         });
       } catch (error) {
         message = error.message;
