@@ -29,7 +29,7 @@
     "leaflet-routing-machine": "^3.2.12",
     "leaflet.markercluster": "^1.4.1",
     "lru-cache": "^5.1.1",
-    "next": "^9.4.4",
+    "next": "^10.0.7",
     "next-compose-plugins": "^2.2.0",
     "next-cookies": "^2.0.3",
     "next-fonts": "^1.2.0",
@@ -80,7 +80,7 @@
     "styled-components": "^5.1.1",
     "styled-theme": "^0.3.3",
     "styled-tools": "^1.7.1",
-    "swiper": "^5.4.5",
+    "swiper": "^6.5.1",
     "uppy": "^1.16.0",
     "userpilot": "^1.1.7",
     "uuid": "^8.1.0"
