@@ -11,6 +11,10 @@
       "description": "Development related config, you can leave this be please.",
       "value": "false"
     },
+    "SDK_VERSION": {
+      "description": "Specify a certain version for the SDK.",
+      "value": "latest"
+    },
     "YARN_PRODUCTION": {
       "description": "Development related config, you can leave this be please.",
       "value": "false"

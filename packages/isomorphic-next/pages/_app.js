@@ -33,7 +33,7 @@ const getSettings = () => {
     (process.env.NEXT_PUBLIC_SDK_PRODUCTION || 'true').toLowerCase() ===
     'false';
 
-  const version = useStagingSdk ? 'staging' : 'v0';
+  const version = process.env.SDK_VERSION !== "latest" ? process.env.SDK_VERSION : (useStagingSdk ? 'staging' : 'v0')
   const endpoint =
     process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/';
 
