@@ -13,15 +13,11 @@
     },
     "SDK_VERSION": {
       "description": "Specify a certain version for the SDK.",
-      "value": "latest"
+      "value": "v0"
     },
     "YARN_PRODUCTION": {
       "description": "Development related config, you can leave this be please.",
       "value": "false"
-    },
-    "NEXT_PUBLIC_SDK_PRODUCTION": {
-      "description": "Where to use Userpilot SDK production or staging",
-      "value": "true"
     },
     "NEXT_PUBLIC_API_ENDPOINT": {
       "description": "The API to connect the SDK to.",
