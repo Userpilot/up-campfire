@@ -13,7 +13,8 @@
     },
     "SDK_VERSION": {
       "description": "Specify a certain version for the SDK.",
-      "value": "v0"
+      "value": "v0",
+      "required": true
     },
     "YARN_PRODUCTION": {
       "description": "Development related config, you can leave this be please.",
