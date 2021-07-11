@@ -4,6 +4,6 @@ module.exports = {
   BACKEND_URL: prod ? 'https://api.example.com' : 'https://localhost:8080',
   env: {
     NEXT_PUBLIC_TOKEN: 'value',
-    SDK_VERSION: 'value'
+    NEXT_SDK_VERSION: 'value'
   },
 };
