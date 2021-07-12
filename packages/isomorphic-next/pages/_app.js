@@ -28,29 +28,20 @@ Router.events.on('routeChangeComplete', (url) => {
 
 Router.events.on('routeChangeError', () => NProgress.done());
 
-const getSettings = () => {
-  const useStagingSdk =
-    (process.env.NEXT_PUBLIC_SDK_PRODUCTION || 'true').toLowerCase() ===
-    'false';
-
-  const version = process.env.SDK_VERSION;
-  const endpoint =
-    process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/';
-
-  return { version, endpoint };
-};
-
 const CustomApp = ({ Component, pageProps, store }) => {
   const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
-
+  const sdkVersion = process.env.NEXT_PUBLIC_VERSION || 'v0';
   useEffect(() => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
       Userpilot.initialize(
         process.env.NEXT_PUBLIC_TOKEN || '3fg24g1',
-        getSettings()
+        {
+          endpoint: process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/',
+          version: sdkVersion
+        }
       );
-      console.log(cookie.get('token'), 'cookie.get()');
+      (cookie.get('token'), 'cookie.get()');
       if (cookie.get('token') === undefined) {
         Router.push('/signin');
       }
