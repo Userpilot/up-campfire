@@ -31,7 +31,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 const CustomApp = ({ Component, pageProps, store }) => {
   console.log(process.env)
   const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
-  const sdkVersion = process.env.NEXT_PUBLIC_VERSION;
+  const sdkVersion = process.env.NEXT_PUBLIC_VERSION || 'v0';
   console.log("VERSION::", sdkVersion)
   useEffect(() => {
     if (!window.userpilot) {
@@ -40,7 +40,7 @@ const CustomApp = ({ Component, pageProps, store }) => {
         process.env.NEXT_PUBLIC_TOKEN || '3fg24g1',
         {
           endpoint: process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/',
-          version: sdkVersion || "v0"
+          version: sdkVersion
         }
       );
       console.log(cookie.get('token'), 'cookie.get()');
