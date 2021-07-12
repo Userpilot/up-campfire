@@ -11,7 +11,7 @@
       "description": "Development related config, you can leave this be please.",
       "value": "false"
     },
-    "NEXT_PUBLIC_VERSION": {
+    "SDK_VERSION": {
       "description": "Specify a certain version for the SDK.",
       "value": "v0",
       "required": true

@@ -29,10 +29,8 @@ Router.events.on('routeChangeComplete', (url) => {
 Router.events.on('routeChangeError', () => NProgress.done());
 
 const CustomApp = ({ Component, pageProps, store }) => {
-  console.log(process.env)
   const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
-  const sdkVersion = process.env.NEXT_PUBLIC_VERSION || 'v0';
-  console.log("VERSION::", sdkVersion)
+  const sdkVersion = process.env.SDK_VERSION || 'v0';
   useEffect(() => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
@@ -43,7 +41,7 @@ const CustomApp = ({ Component, pageProps, store }) => {
           version: sdkVersion
         }
       );
-      console.log(cookie.get('token'), 'cookie.get()');
+      (cookie.get('token'), 'cookie.get()');
       if (cookie.get('token') === undefined) {
         Router.push('/signin');
       }
