@@ -30,7 +30,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const CustomApp = ({ Component, pageProps, store }) => {
   const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
-  const sdkVersion = process.env.SDK_VERSION || 'v0';
+  const sdkVersion = process.env.NEXT_PUBLIC_VERSION || 'v0';
   useEffect(() => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
