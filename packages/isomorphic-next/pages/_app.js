@@ -71,19 +71,19 @@ const CustomApp = ({ Component, pageProps, store }) => {
                         'https://cdn.pendo.io/agent/static/a5657cd3-4677-4bcd-4a09-60e3951aa3f5/pendo.js';
                     z = e.getElementsByTagName(n)[0];
                     z.parentNode.insertBefore(y, z);
-                })(window, document, 'script', 'pendo');
+                })(window, document, 'script', 'pendo')
 
-                (function (m, n, t, l, x, p, o) {
-                    window["_fs_host"] = l;
-                    window["_site_id"] = p;
-                    window["_fs_id"] = x;
-                    o = n.createElement(t);
-                    o.type = "text/javascript";
-                    o.async = true;
-                    o.src = "https://rt.fullsession.io/main.js";
-                    y = n.getElementsByTagName(t)[0];
-                    y.parentNode.insertBefore(o, y);
-                })(window, document, "script", "fullsession.io", 'kroohjsaarp', 'kroohw0nxq')}
+                    (function (m, n, t, l, x, p, o) {
+                        window["_fs_host"] = l;
+                        window["_site_id"] = p;
+                        window["_fs_id"] = x;
+                        o = n.createElement(t);
+                        o.type = "text/javascript";
+                        o.async = true;
+                        o.src = "https://rt.fullsession.io/main.js";
+                        y = n.getElementsByTagName(t)[0];
+                        y.parentNode.insertBefore(o, y);
+                    })(window, document, "script", "fullsession.io", 'kroohjsaarp', 'kroohw0nxq')}
                 )();
             </script>;
             window.pendo.initialize({
