@@ -49,30 +49,46 @@ const CustomApp = ({ Component, pageProps, store }) => {
         if (installPendo && window !== undefined) {
             <script>
                 (function()
-                {(function (p, e, n, d, o) {
-                    var v, w, x, y, z;
-                    o = p[d] = p[d] || {};
-                    o._q = [];
-                    v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
-                    for (w = 0, x = v.length; w < x; ++w) {
-                        (function (m) {
-                            o[m] =
-                                o[m] ||
-                                function () {
-                                    o._q[m === v[0] ? 'unshift' : 'push'](
-                                        [m].concat([].slice.call(arguments, 0))
-                                    );
-                                };
-                        })(v[w]);
-                    }
-                    y = e.createElement(n);
-                    y.async = !0;
-                    y.src =
-                        'https://cdn.pendo.io/agent/static/a5657cd3-4677-4bcd-4a09-60e3951aa3f5/pendo.js';
-                    z = e.getElementsByTagName(n)[0];
-                    z.parentNode.insertBefore(y, z);
-                })(window, document, 'script', 'pendo')
+                {
+                    (function (p, e, n, d, o) {
+                        var v, w, x, y, z;
+                        o = p[d] = p[d] || {};
+                        o._q = [];
+                        v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                        for (w = 0, x = v.length; w < x; ++w) {
+                            (function (m) {
+                                o[m] =
+                                    o[m] ||
+                                    function () {
+                                        o._q[m === v[0] ? 'unshift' : 'push'](
+                                            [m].concat([].slice.call(arguments, 0))
+                                        );
+                                    };
+                            })(v[w]);
+                        }
+                        y = e.createElement(n);
+                        y.async = !0;
+                        y.src =
+                            'https://cdn.pendo.io/agent/static/a5657cd3-4677-4bcd-4a09-60e3951aa3f5/pendo.js';
+                        z = e.getElementsByTagName(n)[0];
+                        z.parentNode.insertBefore(y, z);
+                    })(window, document, 'script', 'pendo')}
+                )();
+            </script>;
+            window.pendo.initialize({
+                visitor: {
+                    id: 'demo@gmail.com',
+                },
+                account: {
+                    id: 'demo@gmail.com',
+                },
+            });
+        }
 
+        if (process.env.NEXT_PUBLIC_TOKEN == '100jo81c7' && window !== undefined && window.pendo !== undefined) {
+            <script>
+                (function()
+                {
                     (function (m, n, t, l, x, p, o) {
                         window["_fs_host"] = l;
                         window["_site_id"] = p;
@@ -86,14 +102,6 @@ const CustomApp = ({ Component, pageProps, store }) => {
                     })(window, document, "script", "fullsession.io", 'kroohjsaarp', 'kroohw0nxq')}
                 )();
             </script>;
-            window.pendo.initialize({
-                visitor: {
-                    id: 'demo@gmail.com',
-                },
-                account: {
-                    id: 'demo@gmail.com',
-                },
-            });
         }
     }, []);
     return (
