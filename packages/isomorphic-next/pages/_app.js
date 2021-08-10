@@ -86,22 +86,19 @@ const CustomApp = ({ Component, pageProps, store }) => {
         }
 
         if (process.env.NEXT_PUBLIC_TOKEN == '100jo81c7' && window !== undefined && window.pendo !== undefined) {
-            <script>
-                (function()
-                {
-                    (function (m, n, t, l, x, p, o) {
-                        window["_fs_host"] = l;
-                        window["_site_id"] = p;
-                        window["_fs_id"] = x;
-                        o = n.createElement(t);
-                        o.type = "text/javascript";
-                        o.async = true;
-                        o.src = "https://rt.fullsession.io/main.js";
-                        y = n.getElementsByTagName(t)[0];
-                        y.parentNode.insertBefore(o, y);
-                    })(window, document, "script", "fullsession.io", 'kroohjsaarp', 'kroohw0nxq')}
-                )();
-            </script>;
+            (function () {
+                (function (m, n, t, l, x, p, o) {
+                    window["_fs_host"] = l;
+                    window["_site_id"] = p;
+                    window["_fs_id"] = x;
+                    o = n.createElement(t);
+                    o.type = "text/javascript";
+                    o.async = true;
+                    o.src = "https://rt.fullsession.io/main.js";
+                    y = n.getElementsByTagName(t)[0];
+                    y.parentNode.insertBefore(o, y);
+                })(window, document, "script", "fullsession.io", 'kroohjsaarp', 'kroohw0nxq')
+            })();
         }
     }, []);
     return (
