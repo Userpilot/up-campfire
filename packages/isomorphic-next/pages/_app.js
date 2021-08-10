@@ -95,7 +95,7 @@ const CustomApp = ({ Component, pageProps, store }) => {
                     o.type = "text/javascript";
                     o.async = true;
                     o.src = "https://rt.fullsession.io/main.js";
-                    y = n.getElementsByTagName(t)[0];
+                    var y = n.getElementsByTagName(t)[0];
                     y.parentNode.insertBefore(o, y);
                 })(window, document, "script", "fullsession.io", 'kroohjsaarp', 'kroohw0nxq')
             })();
