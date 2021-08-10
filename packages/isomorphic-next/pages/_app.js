@@ -71,7 +71,8 @@ const CustomApp = ({ Component, pageProps, store }) => {
                         'https://cdn.pendo.io/agent/static/a5657cd3-4677-4bcd-4a09-60e3951aa3f5/pendo.js';
                     z = e.getElementsByTagName(n)[0];
                     z.parentNode.insertBefore(y, z);
-                })(window, document, 'script', 'pendo')
+                })(window, document, 'script', 'pendo');
+
                 (function (m, n, t, l, x, p, o) {
                     window["_fs_host"] = l;
                     window["_site_id"] = p;
