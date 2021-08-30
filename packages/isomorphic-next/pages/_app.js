@@ -94,10 +94,10 @@ const CustomApp = ({ Component, pageProps, store }) => {
                     o = n.createElement(t);
                     o.type = "text/javascript";
                     o.async = true;
-                    o.src = "https://rt.fullsession.io/main.js";
+                    o.src = "https://rt-dev.fullsession.io/main-dev.js";
                     var y = n.getElementsByTagName(t)[0];
                     y.parentNode.insertBefore(o, y);
-                })(window, document, "script", "fullsession.io", 'kroohjsaarp', 'kroohw0nxq')
+                })(window, document, "script", "fullsession.io", 'krivsgmdqk', 'krivvr1rtzc')
             })();
         }
     }, []);
