@@ -18,7 +18,7 @@
     "clone": "^2.1.2",
     "cookie-parser": "^1.4.5",
     "coolors-to-hex": "^1.0.3",
-    "firebase": "^7.15.1",
+    "firebase": "^8.10.1",
     "frappe-charts": "^1.5.0",
     "google-maps-react": "^2.0.6",
     "isomorphic-unfetch": "^3.0.0",
