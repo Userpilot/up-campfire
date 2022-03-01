@@ -4,7 +4,11 @@
 	"version": "3.0.6",
 	"private": true,
 	"author": "RedQ, Inc",
-	"workspaces": ["shared/*", "packages/*", "isomorphic"],
+	"workspaces": [
+		"shared/*",
+		"packages/*",
+		"isomorphic"
+	],
 	"scripts": {
 		"clean": "lerna clean --yes && rimraf node_modules",
 		"clean:build": "lerna exec -- rimraf \"{.next,dist,out,build,.docz}\"",
@@ -66,7 +70,6 @@
 		"leaflet": "^1.6.0",
 		"lodash": "^4.17.15",
 		"moment": "^2.26.0",
-		"node-sass": "^4.14.1",
 		"nprogress": "^0.2.0",
 		"prop-types": "^15.7.2",
 		"react": "^16.13.1",
@@ -121,6 +124,7 @@
 		"reselect": "^4.0.0",
 		"rheostat": "^4.1.1",
 		"rich-marker": "^0.0.1",
+		"sass": "^1.49.9",
 		"styled-components": "^5.1.1",
 		"styled-theme": "^0.3.3",
 		"swiper": "^5.4.5"
