@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 import loadable from '@loadable/component';
@@ -8,15 +8,19 @@ import { getCurrentUser } from '@iso/lib/firebase/firebase.authentication.util';
 
 const Widgets = loadable(() => import('@iso/containers/Widgets/Widgets'));
 export default withAuthSync(() => {
-  getCurrentUser().then((user) => {
-    // - look at this please!
-    if (window && window.userpilot && user && user.uid) {
-      console.log(user, 'user');
-      window.userpilot.reload();
-    } else {
-      Router.push('/login');
-    }
-  });
+  useEffect(() => {
+    getCurrentUser().then((user) => {
+      // - look at this please!
+      if (user && user.uid) {
+        if (window && window.userpilot) {
+          window.userpilot.reload();
+        }
+      } else {
+        Router.push('/login');
+      }
+    });
+  }, []);
+
   return (
     <>
       <Head>
