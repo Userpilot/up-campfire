@@ -8,6 +8,8 @@ Each one of you need to create it's own demo, so follow the following:
 
 - Click deploy to heroku button. [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Userpilot/up-campfire)
 
+[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Userpilot/up-campfire#NEXT_PUBLIC_VERSION=v0&NEXT_PUBLIC_API_ENDPOINT=api.userpilot.io/socket)
+
 You will see the following settings:
 
 - Fill in the app name field (the product will be https://[app-name].herokuapp.com).

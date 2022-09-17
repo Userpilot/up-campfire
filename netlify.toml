@@ -1,0 +1,16 @@
+[build]
+  command = "yarn build:iso-next"
+  publish = "packages/isomorphic-next/.next"
+
+
+
+[template.environment]
+  NEXT_PUBLIC_TOKEN = "The Userpilot app token to connect with"
+  NPM_CONFIG_PRODUCTION = "Development related config, you can leave this be please."
+  NEXT_PUBLIC_VERSION = "Specify a certain version for the SDK."
+  YARN_PRODUCTION = "Development related config, you can leave this be please."
+  NEXT_PUBLIC_API_ENDPOINT = "The API to connect the SDK to."
+  NEXT_PUBLIC_INSTALL_PENDO = "To use Pendo SDK for testing"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
