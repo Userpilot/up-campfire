@@ -1,0 +1,107 @@
+name: Realytics Dynamic dev release
+on:
+workflow_dispatch:
+  inputs:
+    APP_NAME:
+      description: "The aplication name(final endpoint will be campfire-{APP_NAME}.userpilot.io)"
+      required: true
+      type: string
+    NEXT_PUBLIC_TOKEN:
+      description: "The Userpilot app token to connect with"
+      required: true
+      type: string
+    NPM_CONFIG_PRODUCTION:
+      description: "Development related config, you can leave this be please."
+      required: true
+      type: boolean
+      default: false
+    NEXT_PUBLIC_VERSION:
+      description: "Specify a certain version for the SDK."
+      required: true
+      default: "v0"
+      type: string
+    YARN_PRODUCTION:
+      description: "Development related config, you can leave this be please."
+      required: true
+      type: boolean
+      default: false
+    NEXT_PUBLIC_API_ENDPOINT:
+      description: "The API to connect the SDK to."
+      required: true
+      type: string
+      default: "api.userpilot.io/socket/"
+    NEXT_PUBLIC_INSTALL_PENDO:
+      description: "To use Pendo SDK for testing"
+      required: true
+      default: false
+      type: boolean
+jobs:
+  deploy:
+    name: Upload to Amazon S3
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: "0.13.7"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Build campfire app
+        run: yarn install && yarn build:iso-next
+        env:
+          CI: false
+          NEXT_PUBLIC_TOKEN: ${{ inputs.NEXT_PUBLIC_TOKEN }}
+          NPM_CONFIG_PRODUCTION: ${{ inputs.NPM_CONFIG_PRODUCTION }}
+          NEXT_PUBLIC_VERSION: ${{ inputs.NEXT_PUBLIC_VERSION }}
+          YARN_PRODUCTION: ${{ inputs.YARN_PRODUCTION }}
+          NEXT_PUBLIC_API_ENDPOINT: ${{ inputs.NEXT_PUBLIC_API_ENDPOINT }}
+          NEXT_PUBLIC_INSTALL_PENDO: ${{ inputs.NEXT_PUBLIC_INSTALL_PENDO }}
+
+      - name: Create S3 bucket
+        run: |
+          aws s3api head-bucket --bucket campfire-${{ inputs.APP_NAME }}.userpilot.io || aws s3 mb s3://campfire-${{ inputs.APP_NAME }}.userpilot.io --region us-west-2
+          sleep 20 && aws s3 website s3://campfire-${{ inputs.APP_NAME }}.userpilot.io/ --index-document index.html --error-document index.html
+
+      - name: Deploy to S3
+        run: aws s3 sync ./packages/apps/product/build s3://campfire-${{ inputs.APP_NAME }}.userpilot.io  --delete --acl public-read
+
+      - name: print generated bucket name
+        run: echo "campfire-${{ inputs.APP_NAME }}.userpilot.io"
+
+      - name: Create cloudflare record
+        uses: rez0n/create-dns-record@v2.1
+        with:
+          type: "CNAME"
+          name: "campfire-${{ inputs.APP_NAME }}.userpilot.io"
+          content: "campfire-${{ inputs.APP_NAME }}.userpilot.io.s3-website-us-west-2.amazonaws.com"
+          ttl: 1
+          proxied: true
+          token: ${{ secrets.CLOUDFLARE_DEPLOY_TOKEN }}
+          zone: ${{ secrets.CLOUDFLARE_DEPLOY_ZONE }}
+
+      - name: print cloudflare endpoint
+        run: echo "campfire-${{ inputs.APP_NAME }}.userpilot.io"
+
+      - name: Apply Terraform configurations
+        run: |
+          cd deploy
+          terraform init
+          terraform workspace new campfire-${{ inputs.APP_NAME }} &> /dev/null || true
+          terraform workspace select campfire-${{ inputs.APP_NAME }}
+          terraform apply --auto-approve
+        env:
+          AWS_REGION: "us-west-2"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          TF_VAR_cloudflare_token: ${{ secrets.CLOUDFLARE_DEPLOY_TOKEN }}
+          TF_VAR_cloudflare_zone_id: ${{ secrets.CLOUDFLARE_DEPLOY_ZONE }}
+          TF_VAR_cloudflare_domain: nxtg-dev-${{ inputs.APP_NAME }}.userpilot.io
