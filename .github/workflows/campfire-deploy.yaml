@@ -1,40 +1,41 @@
 name: Realytics Dynamic dev release
+
 on:
-workflow_dispatch:
-  inputs:
-    APP_NAME:
-      description: "The aplication name(final endpoint will be campfire-{APP_NAME}.userpilot.io)"
-      required: true
-      type: string
-    NEXT_PUBLIC_TOKEN:
-      description: "The Userpilot app token to connect with"
-      required: true
-      type: string
-    NPM_CONFIG_PRODUCTION:
-      description: "Development related config, you can leave this be please."
-      required: true
-      type: boolean
-      default: false
-    NEXT_PUBLIC_VERSION:
-      description: "Specify a certain version for the SDK."
-      required: true
-      default: "v0"
-      type: string
-    YARN_PRODUCTION:
-      description: "Development related config, you can leave this be please."
-      required: true
-      type: boolean
-      default: false
-    NEXT_PUBLIC_API_ENDPOINT:
-      description: "The API to connect the SDK to."
-      required: true
-      type: string
-      default: "api.userpilot.io/socket/"
-    NEXT_PUBLIC_INSTALL_PENDO:
-      description: "To use Pendo SDK for testing"
-      required: true
-      default: false
-      type: boolean
+  workflow_dispatch:
+    inputs:
+      APP_NAME:
+        description: "The aplication name(final endpoint will be campfire-{APP_NAME}.userpilot.io)"
+        required: true
+        type: string
+      NEXT_PUBLIC_TOKEN:
+        description: "The Userpilot app token to connect with"
+        required: true
+        type: string
+      NPM_CONFIG_PRODUCTION:
+        description: "Development related config, you can leave this be please."
+        required: true
+        type: boolean
+        default: false
+      NEXT_PUBLIC_VERSION:
+        description: "Specify a certain version for the SDK."
+        required: true
+        default: "v0"
+        type: string
+      YARN_PRODUCTION:
+        description: "Development related config, you can leave this be please."
+        required: true
+        type: boolean
+        default: false
+      NEXT_PUBLIC_API_ENDPOINT:
+        description: "The API to connect the SDK to."
+        required: true
+        type: string
+        default: "api.userpilot.io/socket/"
+      NEXT_PUBLIC_INSTALL_PENDO:
+        description: "To use Pendo SDK for testing"
+        required: true
+        default: false
+        type: boolean
 jobs:
   deploy:
     name: Upload to Amazon S3
