@@ -56,7 +56,7 @@ jobs:
           aws-region: us-west-2
 
       - name: Build campfire app
-        run: yarn install && yarn build:iso-next
+        run: yarn install && yarn build:aws
         env:
           CI: false
           NEXT_PUBLIC_TOKEN: ${{ inputs.NEXT_PUBLIC_TOKEN }}
@@ -72,10 +72,7 @@ jobs:
           sleep 20 && aws s3 website s3://campfire-${{ inputs.APP_NAME }}.userpilot.io/ --index-document index.html --error-document index.html
 
       - name: Deploy to S3
-        run: aws s3 sync ./packages/apps/product/build s3://campfire-${{ inputs.APP_NAME }}.userpilot.io  --delete --acl public-read
-
-      - name: print generated bucket name
-        run: echo "campfire-${{ inputs.APP_NAME }}.userpilot.io"
+        run: aws s3 sync ./packages/isomorphic-next/out s3://campfire-${{ inputs.APP_NAME }}.userpilot.io  --delete --acl public-read
 
       - name: Create cloudflare record
         uses: rez0n/create-dns-record@v2.1
@@ -90,18 +87,3 @@ jobs:
 
       - name: print cloudflare endpoint
         run: echo "campfire-${{ inputs.APP_NAME }}.userpilot.io"
-
-      - name: Apply Terraform configurations
-        run: |
-          cd deploy
-          terraform init
-          terraform workspace new campfire-${{ inputs.APP_NAME }} &> /dev/null || true
-          terraform workspace select campfire-${{ inputs.APP_NAME }}
-          terraform apply --auto-approve
-        env:
-          AWS_REGION: "us-west-2"
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          TF_VAR_cloudflare_token: ${{ secrets.CLOUDFLARE_DEPLOY_TOKEN }}
-          TF_VAR_cloudflare_zone_id: ${{ secrets.CLOUDFLARE_DEPLOY_ZONE }}
-          TF_VAR_cloudflare_domain: nxtg-dev-${{ inputs.APP_NAME }}.userpilot.io
