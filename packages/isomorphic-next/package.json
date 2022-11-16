@@ -90,7 +90,8 @@
     "build": "next build",
     "serve": "next start -p ${PORT:-3000}",
     "analyze": "cross-env ANALYZE=1 next build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "build:aws": "next build && next export"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.13.0",

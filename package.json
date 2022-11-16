@@ -26,7 +26,8 @@
 		"build:iso-boilerplate": "yarn workspace @iso/boilerplate run build",
 		"serve:iso-cra": "yarn workspace @iso/cra run serve",
 		"serve:iso-next": "yarn workspace @iso/next run start",
-		"serve:iso-boilerplate": "yarn workspace @iso/next run serve"
+		"serve:iso-boilerplate": "yarn workspace @iso/next run serve",
+		"build:aws": "yarn workspace @iso/next run build:aws"
 	},
 	"husky": {
 		"hooks": {
