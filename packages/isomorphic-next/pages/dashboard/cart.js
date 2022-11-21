@@ -30,14 +30,14 @@ const { changeProductQuantity } = ecommerceActions;
 let totalPrice = 0;
 function CartTable({ style }) {
   const dispatch = useDispatch();
-  const { productQuantity, products } = useSelector(state => state.Ecommerce);
+  const { productQuantity, products } = useSelector((state) => state.Ecommerce);
 
   function renderItems() {
     totalPrice = 0;
     if (!productQuantity || productQuantity.length === 0) {
       return <tr className="isoNoItemMsg">No item found</tr>;
     }
-    return productQuantity.map(product => {
+    return productQuantity.map((product) => {
       totalPrice += product.quantity * products[product.objectID].price;
       return (
         <SingleCart
@@ -52,7 +52,7 @@ function CartTable({ style }) {
   }
   function changeQuantity(objectID, quantity) {
     const newProductQuantity = [];
-    productQuantity.forEach(product => {
+    productQuantity.forEach((product) => {
       if (product.objectID !== objectID) {
         newProductQuantity.push(product);
       } else {
@@ -66,7 +66,7 @@ function CartTable({ style }) {
   }
   function cancelQuantity(objectID) {
     const newProductQuantity = [];
-    productQuantity.forEach(product => {
+    productQuantity.forEach((product) => {
       if (product.objectID !== objectID) {
         newProductQuantity.push(product);
       }
@@ -121,7 +121,7 @@ function CartTable({ style }) {
             </td>
             <td>
               <Button type="primary">
-                <Link to={'/dashboard/checkout'}>Checkout</Link>
+                <Link href={'/dashboard/checkout'}>Checkout</Link>
               </Button>
             </td>
           </tr>

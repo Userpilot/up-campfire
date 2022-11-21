@@ -80,7 +80,7 @@ const CreateOrUpdateBoard = (props) => {
 };
 export default connect(
   (state, ownProps) => ({
-    board: state.scrumBoard.boards[ownProps.query.bid],
+    board: state.scrumBoard.boards[ownProps.query?.bid || null] || null,
   }),
   {
     ...scrumBoardActions,

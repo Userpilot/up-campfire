@@ -1,4 +1,4 @@
-name: Realytics Dynamic dev release
+name: Campfire Deploy
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
         required: true
         type: string
       NPM_CONFIG_PRODUCTION:
-        description: "Development related config, you can leave this be please."
+        description: "NPM_CONFIG_PRODUCTION Development related config, you can leave this be please."
         required: true
         type: boolean
         default: false
@@ -22,7 +22,7 @@ on:
         default: "v0"
         type: string
       YARN_PRODUCTION:
-        description: "Development related config, you can leave this be please."
+        description: "YARN_PRODUCTION Development related config, you can leave this be please."
         required: true
         type: boolean
         default: false
