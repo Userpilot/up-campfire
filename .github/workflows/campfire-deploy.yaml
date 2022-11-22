@@ -70,7 +70,7 @@ jobs:
       - id: lower-name
         shell: pwsh
         run: |
-          "::set-output name=app_name::$($inputs.APP_NAME.ToLowerInvariant())"
+          "::set-output name=app_name::$(${{inputs.APP_NAME}}.ToLowerInvariant())"
 
       - name: Create S3 bucket
         run: |
