@@ -66,30 +66,30 @@ jobs:
           YARN_PRODUCTION: ${{ inputs.YARN_PRODUCTION }}
           NEXT_PUBLIC_API_ENDPOINT: ${{ inputs.NEXT_PUBLIC_API_ENDPOINT }}
           NEXT_PUBLIC_INSTALL_PENDO: ${{ inputs.NEXT_PUBLIC_INSTALL_PENDO }}
-
+      
       - id: lower-name
-        shell: pwsh
-        run: |
-          "::set-output name=app_name::$(${{inputs.APP_NAME}}.ToLowerInvariant())"
+        uses: ASzc/change-string-case-action@v5
+        with:
+          string: ${{inputs.APP_NAME}}
 
       - name: Create S3 bucket
         run: |
-          aws s3api head-bucket --bucket campfire-${{ steps.lower-name.outputs.app_name }}.userpilot.io || aws s3 mb s3://campfire-${{ steps.lower-name.outputs.app_name }}.userpilot.io --region us-west-2
-          sleep 20 && aws s3 website s3://campfire-${{ steps.lower-name.outputs.app_name }}.userpilot.io/ --index-document index.html --error-document index.html
+          aws s3api head-bucket --bucket campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io || aws s3 mb s3://campfire-${{ steps.lower-name.outputs.app_name }}.userpilot.io --region us-west-2
+          sleep 20 && aws s3 website s3://campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io/ --index-document index.html --error-document index.html
 
       - name: Deploy to S3
-        run: aws s3 sync ./packages/isomorphic-next/out s3://campfire-${{ steps.lower-name.outputs.app_name }}.userpilot.io  --delete --acl public-read
+        run: aws s3 sync ./packages/isomorphic-next/out s3://campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io  --delete --acl public-read
 
       - name: Create cloudflare record
         uses: rez0n/create-dns-record@v2.1
         with:
           type: "CNAME"
-          name: "campfire-${{ steps.lower-name.outputs.app_name }}.userpilot.io"
-          content: "campfire-${{ steps.lower-name.outputs.app_name }}.userpilot.io.s3-website-us-west-2.amazonaws.com"
+          name: "campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io"
+          content: "campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io.s3-website-us-west-2.amazonaws.com"
           ttl: 1
           proxied: true
           token: ${{ secrets.CLOUDFLARE_DEPLOY_TOKEN }}
           zone: ${{ secrets.CLOUDFLARE_DEPLOY_ZONE }}
 
       - name: print cloudflare endpoint
-        run: echo "campfire-${{ steps.lower-name.outputs.app_name }}.userpilot.io"
+        run: echo "campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io"
