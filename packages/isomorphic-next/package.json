@@ -56,7 +56,7 @@
     "react-flip-move": "^3.0.4",
     "react-ga": "^3.0.0",
     "react-google-charts": "^3.0.15",
-    "react-instantsearch": "4.3.0",
+    "react-instantsearch": "4.5.2",
     "react-intl": "^4.6.9",
     "react-motion-drawer": "^3.1.0",
     "react-placeholder": "^4.0.3",
