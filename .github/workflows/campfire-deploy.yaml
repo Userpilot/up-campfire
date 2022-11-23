@@ -13,27 +13,27 @@ on:
         type: string
       NPM_CONFIG_PRODUCTION:
         description: "NPM_CONFIG_PRODUCTION Development related config, you can leave this be please."
-        required: true
+        required: false
         type: boolean
         default: false
       NEXT_PUBLIC_VERSION:
         description: "Specify a certain version for the SDK."
-        required: true
+        required: false
         default: "v0"
         type: string
       YARN_PRODUCTION:
         description: "YARN_PRODUCTION Development related config, you can leave this be please."
-        required: true
+        required: false
         type: boolean
         default: false
       NEXT_PUBLIC_API_ENDPOINT:
         description: "The API to connect the SDK to."
-        required: true
+        required: false
         type: string
         default: "api.userpilot.io/socket/"
       NEXT_PUBLIC_INSTALL_PENDO:
         description: "To use Pendo SDK for testing"
-        required: true
+        required: false
         default: false
         type: boolean
 jobs:
