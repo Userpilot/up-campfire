@@ -106,7 +106,7 @@
 		"react-redux": "^7.2.0",
 		"react-router": "^5.2.0",
 		"react-router-dom": "^5.2.0",
-		"react-scripts": "^3.4.1",
+		"react-scripts": "^4.0.0",
 		"react-sidebar": "^3.0.2",
 		"react-speech-recognition": "^2.0.4",
 		"react-tag-input": "^6.4.3",
