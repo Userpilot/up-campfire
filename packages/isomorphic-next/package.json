@@ -40,7 +40,7 @@
     "null-loader": "^4.0.0",
     "react": "^16.8",
     "react-addons-shallow-compare": "^15.6.2",
-    "react-big-calendar": "^0.25.0",
+    "react-big-calendar": "^0.28.1",
     "react-chartjs-2": "^2.9.0",
     "react-codemirror": "^1.0.0",
     "react-cookie": "^4.0.3",
