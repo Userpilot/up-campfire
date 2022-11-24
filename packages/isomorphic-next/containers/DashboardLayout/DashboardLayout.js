@@ -42,7 +42,7 @@ export default function DashboardLayout({ children }) {
             </Footer>
           </Layout>
         </Layout>
-        <Drift appId="kniyd8nra9kb" />;
+        <Drift appId="kniyd8nra9kb" />
       </Layout>
     </AppHolder>
   );
