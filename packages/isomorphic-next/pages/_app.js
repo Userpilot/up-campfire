@@ -14,86 +14,103 @@ import Drift from 'react-driftjs';
 import cookie from 'js-cookie';
 
 Router.events.on('routeChangeStart', (url) => {
-  NProgress.start();
+    NProgress.start();
 });
 
 Router.events.on('routeChangeComplete', (url) => {
-  window.analytics.page(url);
-  const isBrowser = typeof window !== 'undefined';
-  if (isBrowser && url !== '/signin') {
-    window.userpilot.reload();
-  }
-  NProgress.done();
+    window.analytics.page(url);
+    const isBrowser = typeof window !== 'undefined';
+    if (isBrowser && url !== '/signin') {
+        window.userpilot.reload();
+    }
+    NProgress.done();
 });
 
 Router.events.on('routeChangeError', () => NProgress.done());
 
 const CustomApp = ({ Component, pageProps, store }) => {
-  const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
-  const sdkVersion = process.env.NEXT_PUBLIC_VERSION || 'v0';
-  useEffect(() => {
-    if (!window.userpilot) {
-      const { Userpilot } = require('userpilot');
-      Userpilot.initialize(
-        process.env.NEXT_PUBLIC_TOKEN || '3fg24g1',
-        {
-          endpoint: process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/',
-          version: sdkVersion
+    const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
+    const sdkVersion = process.env.NEXT_PUBLIC_VERSION || 'v0';
+    useEffect(() => {
+        if (!window.userpilot) {
+            const { Userpilot } = require('userpilot');
+            Userpilot.initialize(
+                process.env.NEXT_PUBLIC_TOKEN || '3fg24g1',
+                {
+                    endpoint: process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/',
+                    version: sdkVersion
+                }
+            );
+            (cookie.get('token'), 'cookie.get()');
+            if (cookie.get('token') === undefined) {
+                Router.push('/signin');
+            }
         }
-      );
-      (cookie.get('token'), 'cookie.get()');
-      if (cookie.get('token') === undefined) {
-        Router.push('/signin');
-      }
-    }
-    if (installPendo && window !== undefined) {
-      <script>
-        (function()
-        {(function (p, e, n, d, o) {
-          var v, w, x, y, z;
-          o = p[d] = p[d] || {};
-          o._q = [];
-          v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
-          for (w = 0, x = v.length; w < x; ++w) {
-            (function (m) {
-              o[m] =
-                o[m] ||
-                function () {
-                  o._q[m === v[0] ? 'unshift' : 'push'](
-                    [m].concat([].slice.call(arguments, 0))
-                  );
-                };
-            })(v[w]);
-          }
-          y = e.createElement(n);
-          y.async = !0;
-          y.src =
-            'https://cdn.pendo.io/agent/static/a5657cd3-4677-4bcd-4a09-60e3951aa3f5/pendo.js';
-          z = e.getElementsByTagName(n)[0];
-          z.parentNode.insertBefore(y, z);
-        })(window, document, 'script', 'pendo')}
-        )();
-      </script>;
-      window.pendo.initialize({
-        visitor: {
-          id: 'demo@gmail.com',
-        },
-        account: {
-          id: 'demo@gmail.com',
-        },
-      });
-    }
-  }, []);
-  return (
-    <Provider store={store}>
-      <AuthProvider>
-        <ThemeProvider>
-          <Component {...pageProps} />
-          <Drift appId="5u3k2etrex58" />
-        </ThemeProvider>
-      </AuthProvider>
-    </Provider>
-  );
+        if (installPendo && window !== undefined) {
+            <script>
+                (function()
+                {
+                    (function (p, e, n, d, o) {
+                        var v, w, x, y, z;
+                        o = p[d] = p[d] || {};
+                        o._q = [];
+                        v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                        for (w = 0, x = v.length; w < x; ++w) {
+                            (function (m) {
+                                o[m] =
+                                    o[m] ||
+                                    function () {
+                                        o._q[m === v[0] ? 'unshift' : 'push'](
+                                            [m].concat([].slice.call(arguments, 0))
+                                        );
+                                    };
+                            })(v[w]);
+                        }
+                        y = e.createElement(n);
+                        y.async = !0;
+                        y.src =
+                            'https://cdn.pendo.io/agent/static/a5657cd3-4677-4bcd-4a09-60e3951aa3f5/pendo.js';
+                        z = e.getElementsByTagName(n)[0];
+                        z.parentNode.insertBefore(y, z);
+                    })(window, document, 'script', 'pendo')}
+                )();
+            </script>;
+            window.pendo.initialize({
+                visitor: {
+                    id: 'demo@gmail.com',
+                },
+                account: {
+                    id: 'demo@gmail.com',
+                },
+            });
+        }
+
+        if (process.env.NEXT_PUBLIC_TOKEN == '100jo81c7' && window !== undefined && window.pendo !== undefined) {
+            (function () {
+                (function (m, n, t, l, x, p, o) {
+                    window["_fs_host"] = l;
+                    window["_site_id"] = p;
+                    window["_fs_id"] = x;
+                    o = n.createElement(t);
+                    o.type = "text/javascript";
+                    o.async = true;
+                    o.src = "https://rt-dev.fullsession.io/main-dev.js";
+                    var y = n.getElementsByTagName(t)[0];
+                    y.parentNode.insertBefore(o, y);
+                })(window, document, "script", "fullsession.io", 'krivsgmdqk', 'krivvr1rtzc')
+            })();
+        }
+    }, []);
+    return (
+        <Provider store={store}>
+            <AuthProvider>
+                <ThemeProvider>
+                    <Component {...pageProps} />
+                    <Drift appId="5u3k2etrex58" />
+                </ThemeProvider>
+            </AuthProvider>
+        </Provider>
+    );
 };
 
 export default withRedux(initStore)(CustomApp);
