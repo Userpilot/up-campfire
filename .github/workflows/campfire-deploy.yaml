@@ -57,7 +57,9 @@ jobs:
           aws-region: us-west-2
 
       - name: Build campfire app
-        run: yarn install && yarn build:aws
+        run: |
+          export NODE_OPTIONS=--openssl-legacy-provider
+          yarn install && yarn build:aws
         env:
           CI: false
           NEXT_PUBLIC_TOKEN: ${{ inputs.NEXT_PUBLIC_TOKEN }}
