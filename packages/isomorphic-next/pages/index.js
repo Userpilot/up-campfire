@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 switch (Router.pathname) {
   case '/signin':
-    return <Signin />;
+    <Signin />;
   default:
-    return <Dashboard />;
+    <Dashboard />;
 }
