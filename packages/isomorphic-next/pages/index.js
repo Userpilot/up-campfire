@@ -11,5 +11,6 @@ export default () => {
       return <Signin />;
     default:
       router.push(router.asPath);
+      return <Dashboard />;
   }
 };
