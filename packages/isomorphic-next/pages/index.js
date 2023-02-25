@@ -7,8 +7,9 @@ export default () => {
   const router = useRouter();
   switch (router.asPath) {
     case '/signin':
+    case '/login':
       return <Signin />;
     default:
-      return <Dashboard />;
+      router.push(router.asPath);
   }
 };
