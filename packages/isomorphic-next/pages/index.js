@@ -1,4 +1,10 @@
 import React from 'react';
 import Signin from './signin';
+import Router from 'next/router';
 
-export default () => <Signin />;
+switch (Router.pathname) {
+  case '/signin':
+    return <Signin />;
+  default:
+    return <Dashboard />;
+}
