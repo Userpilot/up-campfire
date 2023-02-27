@@ -12,7 +12,6 @@ import 'nprogress/nprogress.css';
 import { AuthProvider } from '../containers/AuthWrapper';
 import Drift from 'react-driftjs';
 import cookie from 'js-cookie';
-import { useRouter } from 'next/router';
 
 Router.events.on('routeChangeStart', (url) => {
   NProgress.start();
@@ -22,7 +21,7 @@ Router.events.on('routeChangeComplete', (url) => {
   window.analytics.page(url);
   const isBrowser = typeof window !== 'undefined';
   if (isBrowser && url !== '/signin') {
-    window.userpilot.reload();
+    window?.userpilot?.reload();
   }
   NProgress.done();
 });
@@ -30,12 +29,6 @@ Router.events.on('routeChangeComplete', (url) => {
 Router.events.on('routeChangeError', () => NProgress.done());
 
 const CustomApp = ({ Component, pageProps, store }) => {
-  const router = useRouter();
-  const path = (/#!(\/.*)$/.exec(router.asPath) || [])[1];
-  if (path) {
-    router.replace(path);
-  }
-
   const installPendo = process.env.NEXT_PUBLIC_INSTALL_PENDO;
   const sdkVersion = process.env.NEXT_PUBLIC_VERSION || 'v0';
   useEffect(() => {
@@ -46,7 +39,6 @@ const CustomApp = ({ Component, pageProps, store }) => {
           process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/',
         version: sdkVersion,
       });
-      cookie.get('token'), 'cookie.get()';
       if (cookie.get('token') === undefined) {
         Router.push('/signin');
       }

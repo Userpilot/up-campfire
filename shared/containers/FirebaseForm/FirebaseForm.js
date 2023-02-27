@@ -70,7 +70,7 @@ export default function (props) {
               },
               plan: 'free',
             });
-            window.userpilot.reload();
+            window?.userpilot?.reload();
           }
         });
       } catch (error) {

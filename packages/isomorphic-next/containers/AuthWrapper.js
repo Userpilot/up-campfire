@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const router = useRouter();
-  const { pathname, events } = router;
+  const { pathname, events, asPath } = router;
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -18,17 +18,14 @@ function AuthProvider({ children }) {
     const handleRouteChange = (url) => {
       if (user && user.userid && (url === '/' || url === '/signin')) {
         // window.location.href = '/dashboard'
-        router.push('/dashboard');
+        router.push(asPath ?? '/dashboard');
       }
     };
 
     // Check that initial route is OK
-    if (
-      (pathname === '/' || pathname === '/signin') &&
-      window.localStorage.getItem('userpilotUser')
-    ) {
+    if ((pathname === '/' || pathname === '/signin') && user) {
       // window.location.href = '/dashboard'
-      router.push('/dashboard');
+      router.push(asPath ?? '/dashboard');
     }
     if (user) {
       // Monitor routes

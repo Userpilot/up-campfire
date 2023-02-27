@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Router from 'next/router';
 import nextCookie from 'next-cookies';
 import cookie from 'js-cookie';
+
 export const setCookie = (key, value) => {
   if (process.browser) {
     cookie.set(key, value, {
@@ -44,6 +45,7 @@ const getCookieFromServer = (key, req) => {
 
 export const login = ({ token }) => {
   cookie.set('token', token, { expires: 1 });
+  console.log('@@@ 1: Pushed to dashboard');
   Router.push('/dashboard');
 };
 
@@ -55,12 +57,14 @@ export const auth = (ctx) => {
    * Additionally if there's no token it means the user is not logged in.
    */
   if (ctx.req && !token) {
+    console.log('@@@@ Hoon???');
     ctx.res.writeHead(302, { Location: '/signin' });
     ctx.res.end();
   }
 
   // We already checked for server. This should only happen on client.
   if (!token) {
+    console.log('m3kool hoon??');
     Router.push('/signin');
   }
 

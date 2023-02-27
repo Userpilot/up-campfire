@@ -12,12 +12,12 @@ export default withAuthSync(() => {
     getCurrentUser().then((user) => {
       // - look at this please!
       if (user && user.uid) {
-      console.log('@@ USER', user)
+        console.log('@@ USER', user);
         if (window && window.userpilot) {
-          window.userpilot.reload();
+          window?.userpilot?.reload();
         }
       } else {
-        Router.push('/login');
+        Router.push('/signin');
       }
     });
   }, []);
