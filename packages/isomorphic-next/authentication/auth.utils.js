@@ -62,7 +62,6 @@ export const auth = (ctx) => {
 
   // We already checked for server. This should only happen on client.
   if (!token) {
-    console.log('m3kool hoon??');
     Router.push('/signin');
   }
 
