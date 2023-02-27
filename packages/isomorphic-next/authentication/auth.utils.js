@@ -56,7 +56,6 @@ export const auth = (ctx) => {
    * Additionally if there's no token it means the user is not logged in.
    */
   if (ctx.req && !token) {
-    console.log('@@@@ Hoon???');
     ctx.res.writeHead(302, { Location: '/signin' });
     ctx.res.end();
   }
