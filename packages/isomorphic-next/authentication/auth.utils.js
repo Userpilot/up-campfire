@@ -45,7 +45,6 @@ const getCookieFromServer = (key, req) => {
 
 export const login = ({ token }) => {
   cookie.set('token', token, { expires: 1 });
-  console.log('@@@ 1: Pushed to dashboard');
   Router.push('/dashboard');
 };
 
