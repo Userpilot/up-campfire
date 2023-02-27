@@ -16,6 +16,7 @@ const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 
 // next.js custom configuration goes here
 const nextConfig = {
+  trailingSlash: true,
   env: {
     BACKEND_URL: 'https://localhost:8080',
   },
