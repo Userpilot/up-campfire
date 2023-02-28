@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Router from 'next/router';
 import nextCookie from 'next-cookies';
 import cookie from 'js-cookie';
+
 export const setCookie = (key, value) => {
   if (process.browser) {
     cookie.set(key, value, {

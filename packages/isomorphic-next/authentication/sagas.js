@@ -9,25 +9,30 @@ import actions from './actions';
 const ApiUrl = '/api/login';
 
 function* loginRequest({ payload: { user } }) {
-  try {
-    const response = yield fetch(ApiUrl, {
-      method: 'POST',
+  const token = true;
 
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user }),
-    });
-    if (response.status === 200) {
-      const { token } = yield response.json();
-      yield call(login, { token });
-      yield put(actions.loginRequestSuccess(token));
-    } else {
-      let error = new Error(response.statusText);
-      error.response = response;
-      throw error;
-    }
-  } catch (error) {
-    yield put(actions.loginRequestFailure(error));
-  }
+  yield call(login, { token });
+  yield put(actions.loginRequestSuccess(token));
+
+  // try {
+  //   const response = yield fetch(ApiUrl, {
+  //     method: 'POST',
+
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ user }),
+  //   });
+  //   if (response.status === 200) {
+  //     const { token } = yield response.json();
+  //     yield call(login, { token });
+  //     yield put(actions.loginRequestSuccess(token));
+  //   } else {
+  //     let error = new Error(response.statusText);
+  //     error.response = response;
+  //     throw error;
+  //   }
+  // } catch (error) {
+  //   yield put(actions.loginRequestFailure(error));
+  // }
 }
 
 export function* jwtLoginRequest() {

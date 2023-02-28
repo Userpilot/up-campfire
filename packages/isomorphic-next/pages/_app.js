@@ -21,7 +21,7 @@ Router.events.on('routeChangeComplete', (url) => {
   window.analytics.page(url);
   const isBrowser = typeof window !== 'undefined';
   if (isBrowser && url !== '/signin') {
-    window.userpilot.reload();
+    window?.userpilot?.reload();
   }
   NProgress.done();
 });
@@ -34,14 +34,11 @@ const CustomApp = ({ Component, pageProps, store }) => {
   useEffect(() => {
     if (!window.userpilot) {
       const { Userpilot } = require('userpilot');
-      Userpilot.initialize(
-        process.env.NEXT_PUBLIC_TOKEN || '3fg24g1',
-        {
-          endpoint: process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/',
-          version: sdkVersion
-        }
-      );
-      (cookie.get('token'), 'cookie.get()');
+      Userpilot.initialize(process.env.NEXT_PUBLIC_TOKEN || '3fg24g1', {
+        endpoint:
+          process.env.NEXT_PUBLIC_API_ENDPOINT || 'api.userpilot.io/socket/',
+        version: sdkVersion,
+      });
       if (cookie.get('token') === undefined) {
         Router.push('/signin');
       }
