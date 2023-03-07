@@ -14,6 +14,7 @@ const getInvoiceId = (props) => {
     };
   } catch (e) {}
 };
+
 export default withRouter(
   withAuthSync((props) => {
     const { invoiceId, redirectPath } = getInvoiceId(props);
