@@ -70,7 +70,7 @@ class Invoices extends Component {
       width: '10%',
       render: (text, invoice) => (
         <div className="isoInvoiceBtnView">
-          <Link href={`invoice/${invoice.id}`}>
+          <Link href={`invoice?id=${invoice.id}`}>
             <a>
               <Button color="primary" className="invoiceViewBtn">
                 View
