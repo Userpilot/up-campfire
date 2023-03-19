@@ -45,7 +45,10 @@ const CreateOrUpdateBoard = (props) => {
       values.id = uuidV4();
     }
     props.createOrUpdateBoardWatcher(values);
-    props.router.push(`/dashboard/scrum/project/${values.id}`);
+    props.router.push(
+      `/dashboard/scrum/project/[pid]`,
+      `/dashboard/scrum/project/${values.id}`
+    );
   };
 
   return (

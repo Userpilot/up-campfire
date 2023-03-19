@@ -25,7 +25,10 @@ export default withRouter(
         </Head>
         <DashboardLayout>
           {invoiceId ? (
-            <SingleInvoice invoiceId={invoiceId} redirectPath={redirectPath} />
+            <SingleInvoice
+              invoiceId={invoiceId}
+              redirectPath={'/dashboard/invoice'}
+            />
           ) : (
             <Invoice />
           )}
