@@ -70,7 +70,9 @@ class Invoices extends Component {
       width: '10%',
       render: (text, invoice) => (
         <div className="isoInvoiceBtnView">
-          <Link href={`invoice/${invoice.id}`}>
+          <Link
+            href={{ pathname: `/dashboard/invoice`, query: { id: invoice.id } }}
+          >
             <a>
               <Button color="primary" className="invoiceViewBtn">
                 View
@@ -153,7 +155,7 @@ class Invoices extends Component {
               </div>
             )}
             <div className="isoInvoiceTableBtn">
-              <Link href={`invoice?id=${this.getnewInvoiceId()}`}>
+              <Link href={`/dashboard/invoice?id=${this.getnewInvoiceId()}`}>
                 <a>
                   <Button type="primary" className="mateAddInvoiceBtn">
                     Add Invoice

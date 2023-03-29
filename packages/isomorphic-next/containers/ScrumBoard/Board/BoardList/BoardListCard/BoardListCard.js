@@ -33,8 +33,9 @@ export default function BoardListCard({ item, onDelete, onEdit }) {
       <tr>
         <td>
           <Link
+            as={`/dashboard/scrum/project/${item.id}`}
             className="isoDropdownLink"
-            href={`/dashboard/scrum/project/${item.id}`}
+            href={`/dashboard/scrum/project/[pid]`}
           >
             <a className="isoDropdownLink">
               <ProjectInfo>

@@ -21,7 +21,7 @@ function BoardLists({
 
   const handleEdit = (board) => {
     editBoard(board);
-    router.push(`/dashboard/scrum/${board.id}`);
+    router.push(`/dashboard/scrum/[bid]`, `/dashboard/scrum/${board.id}`);
   };
 
   return (
@@ -38,7 +38,11 @@ function BoardLists({
           ))}
         </Table>
       ) : (
-        <NoBoardFounds router={router} />
+        <NoBoardFounds
+          history={router}
+          router={router}
+          match={{ url: router.pathname }}
+        />
       )}
     </AppLayout>
   );

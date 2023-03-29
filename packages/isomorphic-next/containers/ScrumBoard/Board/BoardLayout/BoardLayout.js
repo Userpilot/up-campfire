@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+
 import { CaretDownOutlined, DownOutlined } from '@ant-design/icons';
 import { Layout, Menu, Dropdown, Popover, Checkbox, Tooltip } from 'antd';
 import SearchInput from '@iso/components/ScrumBoard/SearchInput/SearchInput';
@@ -11,7 +11,7 @@ import { variables } from '@iso/assets/styles/variables';
 import AvatarIcon from '@iso/assets/images/icon/08-icon.svg';
 import PlusIcon from '@iso/assets/images/icon/24.svg';
 import { Scrollbars } from 'react-custom-scrollbars';
-
+import Link from 'next/link';
 import {
   ProjectInfoCard,
   Avatar,
@@ -58,7 +58,10 @@ const BoardLayout = ({
 
       {Object.values(boards).map((board) => (
         <Menu.Item key={board.id}>
-          <Link to={`/dashboard/scrum-board/project/${board.id}`}>
+          <Link
+            as={`/dashboard/scrum/project/${board.id}`}
+            href={`/dashboard/scrum/project/[pid]`}
+          >
             <ProjectInfoCard>
               <Avatar src={AvatarIcon} />
               <InfoWrapper>
@@ -72,12 +75,12 @@ const BoardLayout = ({
 
       <Menu.Item>
         <ViewAll>
-          <Link to="/dashboard/scrum-board">View All Projects</Link>
+          <Link href="/dashboard/scrum">View All Projects</Link>
         </ViewAll>
       </Menu.Item>
       <Menu.Item>
         <CreateProject>
-          <Link to="/dashboard/scrum-board/new">Create New Project</Link>
+          <Link href="/dashboard/scrum/new">Create New Project</Link>
         </CreateProject>
       </Menu.Item>
     </Menu>

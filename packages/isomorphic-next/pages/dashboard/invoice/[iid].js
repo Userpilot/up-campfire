@@ -8,7 +8,7 @@ import DashboardLayout from '../../../containers/DashboardLayout/DashboardLayout
 const getInvoiceId = (props) => {
   try {
     const { router } = props;
-    console.log(router.query, 'router.query');
+
     return {
       invoiceId: router.query.iid,
       redirectPath: router.pathname,
@@ -26,7 +26,10 @@ export default withRouter(
         </Head>
         <DashboardLayout>
           {invoiceId ? (
-            <SingleInvoice invoiceId={invoiceId} redirectPath={redirectPath} />
+            <SingleInvoice
+              invoiceId={invoiceId}
+              redirectPath={'/dashboard/invoice'}
+            />
           ) : (
             <Invoice />
           )}
