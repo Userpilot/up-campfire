@@ -77,22 +77,9 @@ jobs:
       - name: Create S3 bucket
         run: |
           aws s3api head-bucket --bucket campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io || aws s3 mb s3://campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io --region us-west-2
+          aws s3api delete-bucket-ownership-controls --bucket campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io
+          aws s3api put-public-access-block  --bucket campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
           sleep 20 && aws s3 website s3://campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io/ --index-document index.html --error-document index.html
-          aws s3api put-public-access-block \
-          --bucket campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io \
-          --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
-          aws s3api put-bucket-policy --bucket campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io --policy "{
-          \"Version\": \"2012-10-17\",
-          \"Statement\": [
-              {
-                  \"Sid\": \"PublicReadGetObject\",
-                  \"Effect\": \"Allow\",
-                  \"Principal\": \"*\",
-                  \"Action\": \"s3:GetObject\",
-                  \"Resource\": \"arn:aws:s3:::campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io/*\"
-              }
-          ]
-          }"
 
       - name: Deploy to S3
         run: aws s3 sync ./packages/isomorphic-next/out s3://campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io  --delete
