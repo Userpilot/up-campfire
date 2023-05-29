@@ -82,7 +82,7 @@ jobs:
           sleep 20 && aws s3 website s3://campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io/ --index-document index.html --error-document index.html
 
       - name: Deploy to S3
-        run: aws s3 sync ./packages/isomorphic-next/out s3://campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io  --delete
+        run: aws s3 sync ./packages/isomorphic-next/out s3://campfire-${{ steps.lower-name.outputs.lowercase }}.userpilot.io  --delete --acl public-read
 
       - name: Create cloudflare record
         uses: rez0n/create-dns-record@v2.1
